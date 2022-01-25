@@ -13,7 +13,7 @@ function Sidebar() {
         console.log("response.data : ", response.data);
         setUser(response.data);
       });
-  });
+  }, []);
 
   return (
     <>
