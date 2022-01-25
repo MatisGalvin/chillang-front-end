@@ -1,24 +1,22 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Page } from "../../components/Page/Page";
-import { SERVER_URL } from "../../config/index";
+import { IUser } from "../../interfaces/models/user.typing";
 
-function Sidebar() {
-  const [user, setUser] = useState(null);
+interface SidebarProps {
+  user: IUser;
+}
 
-  useEffect(() => {
-    axios
-      .get(`${SERVER_URL}/user/61e80f089810ec398b36e8f2`)
-      .then((response) => {
-        console.log("response.data : ", response.data);
-        setUser(response.data);
-      });
-  }, []);
-
+function Sidebar(props: SidebarProps) {
   return (
     <>
-      <h1>Chillang sidebar</h1>
-      <Page />
+      <h1>{props.user.username}, bien le bonjour.</h1>
+      {props.user && (
+        <h2>
+          Vous êtes en train de modifier le projet :{" "}
+          {props.user.projects[0].name}
+        </h2>
+      )}
+
+      <Page pageList={props.user.projects[0].pages} />
     </>
   );
 }

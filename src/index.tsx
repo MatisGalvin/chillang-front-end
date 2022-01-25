@@ -1,14 +1,12 @@
 import ReactDOM from "react-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
-import { Workspace } from "./containers/Workspace/Workspace";
-import { Sidebar } from "./containers/Sidebar/Sidebar";
+import { App } from "./app";
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <Sidebar />
-      <Workspace />
+      <App />
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
