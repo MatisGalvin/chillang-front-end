@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { Page } from "../../components/Page/Page";
+import { SwitchLanguage } from "../../components/SwitchLanguage/SwitchLanguage";
 import { IUser } from "../../interfaces/models/user.typing";
 
 interface SidebarProps {
@@ -6,13 +8,16 @@ interface SidebarProps {
 }
 
 function Sidebar(props: SidebarProps) {
+  const { t } = useTranslation();
   return (
     <>
-      <h1>{props.user.username}, bien le bonjour.</h1>
+      <h1>
+        {props.user.username}, {t("Welcome")}
+      </h1>
+      <SwitchLanguage />
       {props.user && (
         <h2>
-          Vous êtes en train de modifier le projet :{" "}
-          {props.user.projects[0].name}
+          {t("ProjectTarget")} : {props.user.projects[0].name}
         </h2>
       )}
 

@@ -1,4 +1,0 @@
-Dans workspace on va pouvoir déclarer des routes :
-écoute sur /page/:pageId
-
-ajouter morgan cote back
