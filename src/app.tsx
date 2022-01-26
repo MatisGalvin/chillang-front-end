@@ -1,11 +1,13 @@
-import { Workspace } from "./containers/Workspace/Workspace";
 import { Sidebar } from "./containers/Sidebar/Sidebar";
 import axios from "axios";
 import { SERVER_URL } from "./config";
 import { IUser } from "./interfaces/models/user.typing";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export function App() {
+  const { t } = useTranslation();
+
   const [user, setUser] = useState<IUser>();
   useEffect(() => {
     axios
@@ -15,5 +17,5 @@ export function App() {
       });
   }, []);
 
-  return <>{user ? <Sidebar user={user} /> : <h1>Chargement</h1>}</>;
+  return <>{user ? <Sidebar user={user} /> : <h1>{t("LoadMessage")}</h1>}</>;
 }
