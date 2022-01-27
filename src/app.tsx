@@ -4,6 +4,8 @@ import { SERVER_URL } from "./config";
 import { IUser } from "./interfaces/models/user.typing";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Workspace } from "./containers/Workspace/Workspace";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 export function App() {
   const { t } = useTranslation();
@@ -17,5 +19,22 @@ export function App() {
       });
   }, []);
 
-  return <>{user ? <Sidebar user={user} /> : <h1>{t("LoadMessage")}</h1>}</>;
+  return (
+    <>
+      {user ? (
+        <>
+          <Grid templateColumns="400px 1fr">
+            <GridItem w="100%">
+              <Sidebar user={user} />
+            </GridItem>
+            <GridItem w="100%">
+              <Workspace />
+            </GridItem>
+          </Grid>
+        </>
+      ) : (
+        <h1>{t("loadMessage")}</h1>
+      )}
+    </>
+  );
 }

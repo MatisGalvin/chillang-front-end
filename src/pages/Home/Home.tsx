@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <h1>PAGES</h1>
+      <h1>Selectionner une page à modifier.</h1>
     </>
   );
 }

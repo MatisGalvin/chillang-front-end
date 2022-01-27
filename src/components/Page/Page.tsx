@@ -1,16 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
-import { PageProps } from "./Page.typing";
-
-function Page(p: PageProps) {
-  return (
-    <Box bg="tomato" w="100%" p={4} color="black">
-      {p.pageList.map((page) => (
-        <Text>
-          <a href="#">{page.name}</a>
-        </Text>
-      ))}
-    </Box>
-  );
+import React from "react";
+import { useParams } from "react-router-dom";
+function Page() {
+  const params = useParams();
+  console.log(params);
+  return <h1>Bienvenue sur la page : {params.id}</h1>;
 }
 
 export { Page };

@@ -2,36 +2,19 @@ import ReactDOM from "react-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import { App } from "./app";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import HttpApi from "i18next-http-backend";
-
-i18n
-  .use(HttpApi)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    debug: true,
-    fallbackLng: "en",
-    detection: {
-      order: ["cookie", "htmlTag", "localStorage", "path", "subdomain"],
-      caches: ["cookie"],
-    },
-    backend: {
-      loadPath: "/assets/locales/{{lng}}/translation.json",
-    },
-    react: {
-      useSuspense: false,
-    },
-  });
-
-export default i18n;
+import { BrowserRouter } from "react-router-dom";
+// import "./i18n/";
+import { I18nextProvider } from "react-i18next";
+import { i18n } from "./i18n/";
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <BrowserRouter>
+        <I18nextProvider i18n={i18n}>
+          <App />
+        </I18nextProvider>
+      </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")

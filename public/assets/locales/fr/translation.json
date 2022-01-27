@@ -1,5 +1,6 @@
 {
-  "LoadMessage": "Chargement...",
-  "Welcome": "bien le bonjour.",
-  "ProjectTarget": "Vous êtes en train de modifier le projet"
+  "loadMessage": "Chargement...",
+  "welcome": "bien le bonjour.",
+  "projectTarget": "Vous êtes en train de modifier le projet",
+  "error": "Il n'y a rien par ici !"
 }

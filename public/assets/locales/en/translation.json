@@ -1,5 +1,6 @@
 {
-  "LoadMessage": "Loading...",
-  "Welcome": "welcome.",
-  "ProjectTarget": "You are working on the project"
+  "loadMessage": "Loading...",
+  "welcome": "welcome.",
+  "projectTarget": "You are working on the project",
+  "error": "There's nothing here !"
 }
