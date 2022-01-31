@@ -1,6 +1,8 @@
 {
   "loadMessage": "Chargement...",
-  "welcome": "bien le bonjour.",
+  "mainTitle": "Chillang",
+  "pages": "Pages",
   "projectTarget": "Vous êtes en train de modifier le projet",
-  "error": "Il n'y a rien par ici !"
+  "error": "Il n'y a rien par ici !",
+  "home": "Selectionner une page à modifier."
 }
