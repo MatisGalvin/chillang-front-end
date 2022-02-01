@@ -1,7 +1,7 @@
-import { ISwitchLanguageProps } from "../components/SwitchLanguage/SwitchLanguage.typing";
-
+import { ISupportedLanguages } from "./SupportedLanguages.typing";
 const SERVER_URL = "http://localhost:3090";
-const SUPPORTED_LANGUAGES: ISwitchLanguageProps[] = [
+
+const SUPPORTED_LANGUAGES: ISupportedLanguages[] = [
   {
     code: "fr",
     name: "Français",

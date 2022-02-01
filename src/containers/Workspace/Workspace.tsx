@@ -4,7 +4,9 @@ import { Home } from "../../pages/Home/Home";
 import { NotFound404 } from "../../pages/NotFound404/NotFound404";
 
 /**
- * Component that contains all translation files of a page.
+ * It contains only routes that display a "Page" component or a "Home" component or a "NotFound404" component.
+ * It will display the right component if the url match with the given path.
+ *
  */
 
 function Workspace() {
