@@ -1,27 +1,61 @@
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { Page } from "../../components/Page/Page";
-import { SwitchLanguage } from "../../components/SwitchLanguage/SwitchLanguage";
-import { IUser } from "../../interfaces/models/user.typing";
+import { customTheme } from "../../styles/theme";
+import { PageLinkList } from "../PageLinkList/PageLinkList";
+import { SidebarProps } from "./Sidebar.typing";
 
-interface SidebarProps {
-  user: IUser;
-}
+/**
+ * Component that contains the header logo, a divider, the name of the actual project and the pages
+ * associated to it.
+ */
 
-function Sidebar(props: SidebarProps) {
+function Sidebar(p: SidebarProps) {
   const { t } = useTranslation();
+
+  const headerLogo = (
+    <header>
+      <Flex alignItems="center">
+        <Image
+          marginRight="3"
+          src="../../assets/img/logoChill.svg"
+          boxSize="23px"
+        />
+        <Text
+          fontSize={customTheme.font_size.normal}
+          fontWeight={customTheme.font_weight.normal}
+        >
+          {t("mainTitle")}
+        </Text>
+      </Flex>
+    </header>
+  );
+
+  const divider = (
+    <Box
+      mt="5"
+      mb="5"
+      h="2px"
+      bgGradient="linear(to-r, #E0E1E200, #E0E1E2, #E0E1E228)"
+    />
+  );
+
+  const pages = (
+    <Text
+      fontWeight={customTheme.font_weight.normal}
+      fontSize={customTheme.font_size.medium}
+    >
+      {t("pages")}
+    </Text>
+  );
+
   return (
     <>
-      <h1>
-        {props.user.username}, {t("Welcome")}
-      </h1>
-      <SwitchLanguage />
-      {props.user && (
-        <h2>
-          {t("ProjectTarget")} : {props.user.projects[0].name}
-        </h2>
+      {headerLogo}
+      {divider}
+      {p.project && pages}
+      {p.project && (
+        <PageLinkList key={p.project.name} pageList={p.project.pages} />
       )}
-
-      <Page pageList={props.user.projects[0].pages} />
     </>
   );
 }

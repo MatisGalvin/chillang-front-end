@@ -1,5 +1,5 @@
 import { IPage } from "../../interfaces/models/page.typing";
 
-export interface PageProps {
+export interface PageLinkListProps {
   pageList: IPage[];
 }
