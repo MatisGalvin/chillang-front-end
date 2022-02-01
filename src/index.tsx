@@ -9,13 +9,13 @@ import { customTheme } from "./styles/theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={customTheme}>
+    <I18nextProvider i18n={i18n}>
       <BrowserRouter>
-        <I18nextProvider i18n={i18n}>
+        <ChakraProvider theme={customTheme}>
           <App />
-        </I18nextProvider>
+        </ChakraProvider>
       </BrowserRouter>
-    </ChakraProvider>
+    </I18nextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

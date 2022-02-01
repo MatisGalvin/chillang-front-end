@@ -1,10 +1,8 @@
 {
   "loadMessage": "Loading...",
-  "mainTitle": "Chillang",
   "pages": "Pages",
   "projectTarget": "You are working on the project",
   "error": "There's nothing here !",
-  "home": "Pick a page that you want to modify.",
   "progress": "Progress",
   "english": "English",
   "french": "French",

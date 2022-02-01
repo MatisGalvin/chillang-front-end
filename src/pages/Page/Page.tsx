@@ -15,7 +15,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { SERVER_URL } from "../../config";
-import { IPage } from "../../interfaces/models/page.typing";
+import { IPage } from "../../typings/models/page.typing";
 import { customTheme } from "../../styles/theme";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
@@ -27,7 +27,7 @@ import { useTranslation } from "react-i18next";
  */
 
 function Page() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("pagePage");
   const params = useParams();
   const [page, setPage] = useState<IPage>();
 
@@ -47,7 +47,7 @@ function Page() {
           as={Link}
           to="/"
         >
-          {t("pages")}
+          {t("pagePage:pages")}
         </BreadcrumbLink>
       </BreadcrumbItem>
 
@@ -103,7 +103,7 @@ function Page() {
           fontSize={customTheme.font_size.medium}
           color={customTheme.colors.font_color}
         >
-          {t("progress")}
+          {t("pagePage:progress")}
         </Text>
       </Box>
     </Box>
@@ -118,15 +118,15 @@ function Page() {
     >
       <Tabs variant="line">
         <TabList>
-          <Tab>{t("english")}</Tab>
-          <Tab>{t("french")}</Tab>
+          <Tab>{t("pagePage:english")}</Tab>
+          <Tab>{t("pagePage:french")}</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <p>{t("englishContent")}</p>
+            <p>{t("pagePage:englishContent")}</p>
           </TabPanel>
           <TabPanel>
-            <p>{t("frenchContent")}</p>
+            <p>{t("pagePage:frenchContent")}</p>
           </TabPanel>
         </TabPanels>
       </Tabs>

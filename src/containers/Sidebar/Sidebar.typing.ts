@@ -1,4 +1,4 @@
-import { IProject } from "../../interfaces/models/project.typing";
+import { IProject } from "../../typings/models/project.typing";
 
 export interface SidebarProps {
   project: IProject;

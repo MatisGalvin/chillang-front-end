@@ -10,7 +10,7 @@ import { SidebarProps } from "./Sidebar.typing";
  */
 
 function Sidebar(p: SidebarProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("sidebarContainer");
 
   const headerLogo = (
     <header>
@@ -24,7 +24,7 @@ function Sidebar(p: SidebarProps) {
           fontSize={customTheme.font_size.normal}
           fontWeight={customTheme.font_weight.normal}
         >
-          {t("mainTitle")}
+          {t("sidebarContainer:mainTitle")}
         </Text>
       </Flex>
     </header>
@@ -44,7 +44,7 @@ function Sidebar(p: SidebarProps) {
       fontWeight={customTheme.font_weight.normal}
       fontSize={customTheme.font_size.medium}
     >
-      {t("pages")}
+      {t("sidebarContainer:pages")}
     </Text>
   );
 

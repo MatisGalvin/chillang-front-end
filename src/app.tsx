@@ -1,12 +1,12 @@
 import { Sidebar } from "./containers/Sidebar/Sidebar";
 import axios from "axios";
 import { SERVER_URL } from "./config";
-import { IUser } from "./interfaces/models/user.typing";
+import { IUser } from "./typings/models/user.typing";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Workspace } from "./containers/Workspace/Workspace";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { IProject } from "./interfaces/models/project.typing";
+import { IProject } from "./typings/models/project.typing";
 import { customTheme } from "./styles/theme";
 import useAsyncEffect from "use-async-effect";
 
@@ -46,7 +46,7 @@ export function App() {
           </GridItem>
         </Grid>
       ) : (
-        <h1>{t("loadMessage")}</h1>
+        <h1>{t("common:loadMessage")}</h1>
       )}
     </>
   );
