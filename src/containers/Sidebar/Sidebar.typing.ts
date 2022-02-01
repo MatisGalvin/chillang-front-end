@@ -1,5 +1,5 @@
-import { IUser } from "../../interfaces/models/user.typing";
+import { IProject } from "../../interfaces/models/project.typing";
 
 export interface SidebarProps {
-  user: IUser;
+  project: IProject;
 }

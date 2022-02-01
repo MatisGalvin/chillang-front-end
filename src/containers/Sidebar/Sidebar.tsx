@@ -4,6 +4,11 @@ import { customTheme } from "../../styles/theme";
 import { PageLinkList } from "../PageLinkList/PageLinkList";
 import { SidebarProps } from "./Sidebar.typing";
 
+/**
+ * Component that contains the header logo, a divider, the name of the actual project and the pages
+ * associated to it.
+ */
+
 function Sidebar(p: SidebarProps) {
   const { t } = useTranslation();
 
@@ -31,10 +36,10 @@ function Sidebar(p: SidebarProps) {
       mb="5"
       h="2px"
       bgGradient="linear(to-r, #E0E1E200, #E0E1E2, #E0E1E228)"
-    ></Box>
+    />
   );
 
-  const title = (
+  const pages = (
     <Text
       fontWeight={customTheme.font_weight.normal}
       fontSize={customTheme.font_size.medium}
@@ -47,10 +52,10 @@ function Sidebar(p: SidebarProps) {
     <>
       {headerLogo}
       {divider}
-      {p.user && title}
-      {p.user?.projects.map((project) => {
-        return <PageLinkList key={project.name} pageList={project.pages} />;
-      })}
+      {p.project && pages}
+      {p.project && (
+        <PageLinkList key={p.project.name} pageList={p.project.pages} />
+      )}
     </>
   );
 }

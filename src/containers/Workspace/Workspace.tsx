@@ -3,15 +3,17 @@ import { Page } from "../../components/Page/Page";
 import { Home } from "../../pages/Home/Home";
 import { NotFound404 } from "../../pages/NotFound404/NotFound404";
 
+/**
+ * Component that contains all translation files of a page.
+ */
+
 function Workspace() {
   return (
-    <>
-      <Routes>
-        <Route path="/page/:id" element={<Page />} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound404 />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/page/:id" element={<Page />} />
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<NotFound404 />} />
+    </Routes>
   );
 }
 

@@ -4,5 +4,11 @@
   "pages": "Pages",
   "projectTarget": "Vous êtes en train de modifier le projet",
   "error": "Il n'y a rien par ici !",
-  "home": "Selectionner une page à modifier."
+  "home": "Selectionner une page à modifier.",
+  "progress": "Progression",
+  "english": "Anglais",
+  "french": "Français",
+  "englishContent": "Contenu anglais",
+  "frenchContent": "Contenu Français",
+  "pagesAvailable": "Voici la liste des pages disponibles pour ce projet."
 }
