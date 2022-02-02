@@ -24,9 +24,7 @@ function PageLinkItem(p: PageLinkItemProps) {
     >
       <Link
         style={{
-          fontWeight: match
-            ? customTheme.font_weight.bold
-            : customTheme.font_weight.light,
+          fontWeight: match ? "bold" : "normal",
           color: match
             ? customTheme.colors.font_color
             : customTheme.colors.gray,
