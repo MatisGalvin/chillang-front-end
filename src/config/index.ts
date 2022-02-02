@@ -5,12 +5,17 @@ const SUPPORTED_LANGUAGES: ISupportedLanguages[] = [
   {
     code: "fr",
     name: "Français",
-    country_code: "fr",
+    country_code: "FR",
   },
   {
     code: "en",
     name: "English",
-    country_code: "gb",
+    country_code: "GB",
+  },
+  {
+    code: "it",
+    name: "Italian",
+    country_code: "IT",
   },
 ];
 

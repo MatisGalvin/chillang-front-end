@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { Workspace } from "./containers/Workspace/Workspace";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { IProject } from "./typings/models/project.typing";
-import { customTheme } from "./styles/theme";
 import useAsyncEffect from "use-async-effect";
 
 /**
@@ -33,15 +32,11 @@ export function App() {
   return (
     <>
       {project ? (
-        <Grid
-          p={customTheme.paddingAround.large}
-          templateRows="1fr"
-          templateColumns="250px 1fr"
-        >
-          <GridItem p={customTheme.paddingAround.normal} w="100%">
+        <Grid p="5" templateRows="1fr" templateColumns="250px 1fr">
+          <GridItem p="2" w="100%">
             <Sidebar project={project} />
           </GridItem>
-          <GridItem p={customTheme.paddingAround.normal} w="100%">
+          <GridItem p="2" w="100%">
             <Workspace />
           </GridItem>
         </Grid>

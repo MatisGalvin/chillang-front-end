@@ -20,10 +20,7 @@ function Sidebar(p: SidebarProps) {
           src="../../assets/img/logoChill.svg"
           boxSize="23px"
         />
-        <Text
-          fontSize={customTheme.font_size.normal}
-          fontWeight={customTheme.font_weight.normal}
-        >
+        <Text fontWeight={customTheme.font_weight.normal}>
           {t("sidebarContainer:mainTitle")}
         </Text>
       </Flex>
@@ -40,10 +37,7 @@ function Sidebar(p: SidebarProps) {
   );
 
   const pages = (
-    <Text
-      fontWeight={customTheme.font_weight.normal}
-      fontSize={customTheme.font_size.medium}
-    >
+    <Text fontWeight={customTheme.font_weight.normal} fontSize="large">
       {t("sidebarContainer:pages")}
     </Text>
   );

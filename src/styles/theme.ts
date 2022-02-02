@@ -19,6 +19,7 @@ const customTheme_ = {
     font_color: "#2D3748",
     gray: "#A0AEC0",
     blue_chillang: "#4FD1C5",
+    borderColorTab: "#84DFD6",
     orange: "#F2994A",
     red: "#EB5757",
     yellow: "#FFDA44",

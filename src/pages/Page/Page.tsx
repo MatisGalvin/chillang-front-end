@@ -10,6 +10,14 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -20,6 +28,8 @@ import { customTheme } from "../../styles/theme";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
+import { SUPPORTED_LANGUAGES } from "../../config/";
+import ReactCountryFlag from "react-country-flag";
 
 /**
  * Component that returns a breadcrumb based on the current location,
@@ -39,7 +49,7 @@ function Page() {
   }, [params.id]);
 
   const breadcrumb = (
-    <Breadcrumb marginBottom={customTheme.margin.large}>
+    <Breadcrumb marginBottom="5">
       <BreadcrumbItem>
         <BreadcrumbLink
           fontWeight={customTheme.font_weight.light}
@@ -52,32 +62,31 @@ function Page() {
       </BreadcrumbItem>
 
       <BreadcrumbItem>
-        <BreadcrumbLink fontWeight={customTheme.font_weight.normal}>
-          {page?.name}
-        </BreadcrumbLink>
+        <BreadcrumbLink>{page?.name}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
 
   const banner = (
     <Box
-      padding={customTheme.paddingAround.normal}
+      padding="3"
+      pt="8"
       backgroundImage="../../../assets/img/banner.png"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
-      borderRadius={customTheme.border_radius.medium}
+      borderRadius="lg"
     >
       <Flex>
         <Box
-          background={customTheme.colors.white}
+          background="whiteAlpha.900"
           color={customTheme.colors.blue_chillang}
-          marginLeft={customTheme.margin.mediumL}
+          marginLeft="2"
           display="flex"
           alignItems="center"
           justifyContent="center"
           padding="0 6px"
-          borderRadius={customTheme.border_radius.medium}
+          borderRadius="xl"
           boxShadow="lg"
         >
           <VscFile size="22px" />
@@ -85,21 +94,22 @@ function Page() {
         <Text
           fontSize={customTheme.font_size.large}
           color={customTheme.colors.white}
-          fontWeight={customTheme.font_weight.bold}
-          marginLeft={customTheme.margin.large}
+          fontWeight="bold"
+          marginLeft="5"
         >
           {page?.name}
         </Text>
       </Flex>
       <Box
-        padding={customTheme.paddingAround.normal}
-        borderRadius={customTheme.border_radius.medium}
-        margin={customTheme.marginAround.normal}
-        backgroundColor={customTheme.colors.whiteOpacityLight}
+        padding="5"
+        borderRadius="lg"
+        margin="2"
+        mt="4"
+        backgroundColor="whiteAlpha.800"
         boxShadow="xl"
       >
         <Text
-          fontWeight={customTheme.font_weight.bold}
+          fontWeight="bold"
           fontSize={customTheme.font_size.medium}
           color={customTheme.colors.font_color}
         >
@@ -110,25 +120,58 @@ function Page() {
   );
 
   const translationTab = (
-    <Box
-      backgroundColor={customTheme.colors.white}
-      padding={customTheme.paddingAround.normal}
-      marginTop={customTheme.margin.large}
-      borderRadius={customTheme.border_radius.medium}
-    >
-      <Tabs variant="line">
-        <TabList>
-          <Tab>{t("pagePage:english")}</Tab>
-          <Tab>{t("pagePage:french")}</Tab>
+    <Box p="3" mt="5" borderRadius="lg">
+      <Tabs variant="enclosed">
+        <TabList borderColor={customTheme.colors.blue_chillang}>
+          {SUPPORTED_LANGUAGES.map((lang) => {
+            return (
+              <Tab key={lang.code}>
+                <ReactCountryFlag
+                  countryCode={lang.country_code}
+                  svg
+                  style={{
+                    width: "2em",
+                    height: "2em",
+                  }}
+                />
+                <Text ml="3" fontWeight="bold">
+                  {lang.name}
+                </Text>
+              </Tab>
+            );
+          })}
         </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>{t("pagePage:englishContent")}</p>
-          </TabPanel>
-          <TabPanel>
-            <p>{t("pagePage:frenchContent")}</p>
-          </TabPanel>
-        </TabPanels>
+        <Table mt="8">
+          <Thead>
+            <Tr>
+              <Th
+                fontWeight={customTheme.font_weight.light}
+                color={customTheme.colors.gray}
+              >
+                Translation
+              </Th>
+              <Th
+                fontWeight={customTheme.font_weight.light}
+                color={customTheme.colors.gray}
+              >
+                Completion
+              </Th>
+              <Th
+                fontWeight={customTheme.font_weight.light}
+                color={customTheme.colors.gray}
+              >
+                Identifier
+              </Th>
+              <Th
+                fontWeight={customTheme.font_weight.light}
+                color={customTheme.colors.gray}
+              >
+                Description
+              </Th>
+            </Tr>
+          </Thead>
+          <Tbody></Tbody>
+        </Table>
       </Tabs>
     </Box>
   );

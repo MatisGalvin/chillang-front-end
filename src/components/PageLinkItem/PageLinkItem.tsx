@@ -17,9 +17,8 @@ function PageLinkItem(p: PageLinkItemProps) {
     <Box
       key={p.pageID}
       marginBottom="3"
-      borderRadius={customTheme.border_radius.medium}
+      borderRadius="lg"
       boxShadow="base"
-      bg={customTheme.colors.white}
       w="100%"
       p={3}
     >
