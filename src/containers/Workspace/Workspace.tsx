@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Page } from "../../pages/Page/Page";
 import { Home } from "../../pages/Home/Home";
 import { NotFound404 } from "../../pages/NotFound404/NotFound404";
+import { IWorkspaceProps } from "./Workspace.typing";
 
 /**
  * It contains only routes that display a "Page" component or a "Home" component or a "NotFound404" component.
@@ -9,10 +10,13 @@ import { NotFound404 } from "../../pages/NotFound404/NotFound404";
  *
  */
 
-function Workspace() {
+function Workspace(p: IWorkspaceProps) {
   return (
     <Routes>
-      <Route path="/page/:id" element={<Page />} />
+      <Route
+        path="/page/:_id"
+        element={<Page supportedLanguages={p.project.supportedLanguages} />}
+      />
       <Route path="/" element={<Home />} />
       <Route path="*" element={<NotFound404 />} />
     </Routes>

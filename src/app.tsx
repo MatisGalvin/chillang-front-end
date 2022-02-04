@@ -37,7 +37,7 @@ export function App() {
             <Sidebar project={project} />
           </GridItem>
           <GridItem p="2" w="100%">
-            <Workspace />
+            <Workspace project={project} />
           </GridItem>
         </Grid>
       ) : (

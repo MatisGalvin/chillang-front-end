@@ -7,17 +7,14 @@ import {
   Flex,
   Tabs,
   TabList,
-  TabPanels,
   Tab,
-  TabPanel,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
+  Progress,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -28,25 +25,35 @@ import { customTheme } from "../../styles/theme";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
-import { SUPPORTED_LANGUAGES } from "../../config/";
 import ReactCountryFlag from "react-country-flag";
+import { IPageProps } from "./Page.typing";
 
 /**
  * Component that returns a breadcrumb based on the current location,
  * the banner for the progress, and the translation tab
  */
 
-function Page() {
+function Page(p: IPageProps) {
   const { t } = useTranslation("pagePage");
-  const params = useParams();
+  const params = useParams<{ _id: string }>();
   const [page, setPage] = useState<IPage>();
+  const [currentLang, setCurrentLang] = useState<any>();
+  let currentFile = page?.translationFiles.find(
+    (fichierTraduit) => fichierTraduit.lang === currentLang
+  );
+
+  useAsyncEffect(async () => {
+    const currentLanguage = await p.supportedLanguages[0].code;
+    setCurrentLang(currentLanguage);
+  }, []);
 
   useAsyncEffect(async () => {
     const getOnePage = await axios.get<IPage>(
-      `${SERVER_URL}/page/${params.id}`
+      `${SERVER_URL}/page/${params._id}`
     );
+
     setPage(getOnePage.data);
-  }, [params.id]);
+  }, [params._id]);
 
   const breadcrumb = (
     <Breadcrumb marginBottom="5">
@@ -120,14 +127,14 @@ function Page() {
   );
 
   const translationTab = (
-    <Box p="3" mt="5" borderRadius="lg">
+    <Box p="3" mt="5" borderRadius="lg" boxShadow="md">
       <Tabs variant="enclosed">
         <TabList borderColor={customTheme.colors.blue_chillang}>
-          {SUPPORTED_LANGUAGES.map((lang) => {
+          {p.supportedLanguages.map((lang) => {
             return (
-              <Tab key={lang.code}>
+              <Tab key={lang.code} onClick={() => setCurrentLang(lang.code)}>
                 <ReactCountryFlag
-                  countryCode={lang.country_code}
+                  countryCode={lang.code}
                   svg
                   style={{
                     width: "2em",
@@ -148,29 +155,38 @@ function Page() {
                 fontWeight={customTheme.font_weight.light}
                 color={customTheme.colors.gray}
               >
-                Translation
+                {t("pagePage:translation")}
               </Th>
               <Th
                 fontWeight={customTheme.font_weight.light}
                 color={customTheme.colors.gray}
               >
-                Completion
+                {t("pagePage:completion")}
               </Th>
               <Th
                 fontWeight={customTheme.font_weight.light}
                 color={customTheme.colors.gray}
               >
-                Identifier
+                {t("pagePage:identifier")}
               </Th>
               <Th
                 fontWeight={customTheme.font_weight.light}
                 color={customTheme.colors.gray}
               >
-                Description
+                {t("pagePage:description")}
               </Th>
             </Tr>
           </Thead>
-          <Tbody></Tbody>
+          <Tbody>
+            <Tr>
+              <Td>{currentFile?.data[0].value}</Td>
+              <Td>
+                <Progress value={80} size="xs" />
+              </Td>
+              <Td>{currentFile?.data[0].id}</Td>
+              <Td>{currentFile?.data[0].description}</Td>
+            </Tr>
+          </Tbody>
         </Table>
       </Tabs>
     </Box>

@@ -30,14 +30,18 @@ function Sidebar(p: SidebarProps) {
   const divider = (
     <Box
       mt="5"
-      mb="5"
       h="2px"
       bgGradient="linear(to-r, #E0E1E200, #E0E1E2, #E0E1E228)"
     />
   );
 
   const pages = (
-    <Text fontWeight={customTheme.font_weight.normal} fontSize="large">
+    <Text
+      mb="5"
+      mt="5"
+      fontWeight={customTheme.font_weight.normal}
+      fontSize="large"
+    >
       {t("sidebarContainer:pages")}
     </Text>
   );

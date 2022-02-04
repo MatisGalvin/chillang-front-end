@@ -8,5 +8,9 @@
   "french": "French",
   "englishContent": "English content",
   "frenchContent": "French content",
-  "pagesAvailable": "Here is the available pages for this project."
+  "pagesAvailable": "Here is the available pages for this project.",
+  "translation": "Translation",
+  "completion": "Completion",
+  "identifier": "Identifier",
+  "description": "Description"
 }
