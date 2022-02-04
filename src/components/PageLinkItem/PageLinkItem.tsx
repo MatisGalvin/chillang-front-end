@@ -19,10 +19,11 @@ function PageLinkItem(p: PageLinkItemProps) {
       marginBottom="3"
       borderRadius="lg"
       boxShadow={match ? "md" : "inner"}
+      border="1px solid"
       style={
         match
-          ? { border: "1px solid rgba(79, 209, 197, 0.5)" }
-          : { border: "1px solid rgba(255, 255, 255, 0.3" }
+          ? { borderColor: "rgba(79, 209, 197, 0.5)" }
+          : { borderColor: "rgba(255, 255, 255, 0.3" }
       }
       w="100%"
       p={4}
