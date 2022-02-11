@@ -12,6 +12,7 @@ const customTheme_ = {
     },
   },
   colors: {
+    bg_default: "#F8F9FA",
     divider_darker: "#E0E1E2",
     divider_bright: "#E2E8F0",
     font_color: "#2D3748",

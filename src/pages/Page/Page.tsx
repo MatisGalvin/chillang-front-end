@@ -36,7 +36,7 @@ function Page(p: IPageProps) {
   }, [params._id]);
 
   const breadcrumb = (
-    <Breadcrumb marginBottom="5">
+    <Breadcrumb marginBottom="5" pt="5" ml="5">
       <BreadcrumbItem>
         <BreadcrumbLink
           fontWeight={customTheme.font_weight.light}

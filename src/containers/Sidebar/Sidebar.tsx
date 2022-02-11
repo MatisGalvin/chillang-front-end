@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { customTheme } from "../../styles/theme";
 import { PageLinkList } from "../PageLinkList/PageLinkList";
 import { SidebarProps } from "./Sidebar.typing";
+import { FaProjectDiagram } from "react-icons/fa";
+import { IProject } from "../../typings/models/project.typing";
+import { BoxLink } from "../../components/BoxLink/BoxLink";
 
 /**
  * Component that contains the header logo, a divider, the name of the actual project and the pages
@@ -16,9 +19,10 @@ function Sidebar(p: SidebarProps) {
     <header>
       <Flex alignItems="center">
         <Image
-          marginRight="3"
+          mr="3"
+          ml="4"
           src="../../assets/img/logoChill.svg"
-          boxSize="23px"
+          boxSize="30px"
         />
         <Text fontWeight={customTheme.font_weight.normal}>
           {t("sidebarContainer:mainTitle")}
@@ -35,6 +39,14 @@ function Sidebar(p: SidebarProps) {
     />
   );
 
+  const renderProjectSection = (
+    <BoxLink
+      icone={<FaProjectDiagram color="white" />}
+      link="/newProject"
+      title="Projects"
+    />
+  );
+
   const pages = (
     <Text
       mb="5"
@@ -46,14 +58,21 @@ function Sidebar(p: SidebarProps) {
     </Text>
   );
 
+  const renderPageSection = (project: IProject) => {
+    return (
+      <>
+        {pages}
+        <PageLinkList key={project.name} pageList={project.pages} />
+      </>
+    );
+  };
+
   return (
     <>
       {headerLogo}
       {divider}
-      {p.project && pages}
-      {p.project && (
-        <PageLinkList key={p.project.name} pageList={p.project.pages} />
-      )}
+      {renderProjectSection}
+      {p.project && renderPageSection(p.project)}
     </>
   );
 }

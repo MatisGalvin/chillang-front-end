@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import React from "react";
-import { App } from "./app";
 import { BrowserRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "./i18n/";
 import { Route, Routes } from "react-router-dom";
 import { Sandbox } from "./pages/Sandbox/Sandbox";
+import { App } from "./app";
 
 ReactDOM.render(
   <React.StrictMode>

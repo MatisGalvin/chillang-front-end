@@ -111,7 +111,7 @@ function TranslationTabList(p: ITranslationTabListProps) {
   );
 
   return (
-    <Box p="3" mt="5" borderRadius="lg" boxShadow="md">
+    <Box p="3" mt="5" borderRadius="lg" boxShadow="md" backgroundColor="white">
       <Tabs variant="enclosed">
         {tabListHeader}
         {tabListBody}
