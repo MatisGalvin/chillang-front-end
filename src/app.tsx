@@ -24,7 +24,7 @@ export function App() {
 
   useAsyncEffect(async () => {
     const uniqUser = await axios.get<IUser>(
-      `${SERVER_URL}/user/61e80f089810ec398b36e8f2`
+      `${SERVER_URL}/users/61e80f089810ec398b36e8f2`
     );
     setProject(uniqUser.data.projects[0]);
   }, []);

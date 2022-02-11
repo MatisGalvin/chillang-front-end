@@ -29,7 +29,7 @@ function Page(p: IPageProps) {
   const [page, setPage] = useState<IPage>();
   useAsyncEffect(async () => {
     const getOnePage = await axios.get<IPage>(
-      `${SERVER_URL}/page/${params._id}`
+      `${SERVER_URL}/pages/${params._id}`
     );
 
     setPage(getOnePage.data);
