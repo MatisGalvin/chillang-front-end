@@ -24,13 +24,11 @@ function BoxLink(p: IBoxLinkProps) {
       marginTop="5"
       borderRadius="lg"
       boxShadow="md"
-      style={
-        match
-          ? { borderColor: "rgba(79, 209, 197, 0.5)" }
-          : { borderColor: "rgba(255, 255, 255, 0.3" }
+      borderColor={
+        match ? "rgba(79, 209, 197, 0.5)" : "rgba(255, 255, 255, 0.3"
       }
+      backgroundColor={match ? "white" : "none"}
       w="100%"
-      p={4}
     >
       <Link
         style={{
@@ -41,7 +39,12 @@ function BoxLink(p: IBoxLinkProps) {
         }}
         to={p.link}
       >
-        <Flex display="flex" alignItems="center" justifyContent="flex-start">
+        <Flex
+          p="4"
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-start"
+        >
           {p.icone && displayIconeIfIconePropsIsSet}
           <Text ml="2">{p.title}</Text>
         </Flex>

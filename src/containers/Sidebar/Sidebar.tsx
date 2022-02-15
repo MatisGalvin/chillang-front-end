@@ -42,7 +42,7 @@ function Sidebar(p: SidebarProps) {
   const renderProjectSection = (
     <BoxLink
       icone={<FaProjectDiagram color="white" />}
-      link="/newProject"
+      link="/projects"
       title="Projects"
     />
   );

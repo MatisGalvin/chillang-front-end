@@ -83,8 +83,6 @@ function TranslationTabList(p: ITranslationTabListProps) {
     </Thead>
   );
 
-  const buttonAddTranslation = <Button>Ajouter une row</Button>;
-
   const tabListBodyContent = (
     <Tbody>
       {currentFile?.data.map((currentTranslateFile) => {
@@ -99,7 +97,6 @@ function TranslationTabList(p: ITranslationTabListProps) {
           </Tr>
         );
       })}
-      {buttonAddTranslation}
     </Tbody>
   );
 

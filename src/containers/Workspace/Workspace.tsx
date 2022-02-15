@@ -3,7 +3,7 @@ import { Page } from "../../pages/Page/Page";
 import { Home } from "../../pages/Home/Home";
 import { NotFound404 } from "../../pages/NotFound404/NotFound404";
 import { IWorkspaceProps } from "./Workspace.typing";
-import { ProjectCreate } from "../../pages/ProjectCreate/ProjectCreate";
+import { ProjectList } from "../../pages/ProjectList/ProjectList";
 
 /**
  * It contains only routes that display a "Page" component or a "Home" component or a "NotFound404" component.
@@ -21,8 +21,8 @@ function Workspace(p: IWorkspaceProps) {
         />
         <Route path="/" element={<Home />} />
         <Route
-          path="/newProject"
-          element={<ProjectCreate projectList={p.project} />}
+          path="/projects"
+          element={<ProjectList projectList={p.project} />}
         />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
@@ -33,7 +33,7 @@ function Workspace(p: IWorkspaceProps) {
         <Route path="/" element={<Home />} />
         <Route
           path="/newProject"
-          element={<ProjectCreate projectList={p.project} />}
+          element={<ProjectList projectList={p.project} />}
         />
         <Route path="*" element={<NotFound404 />} />
       </Routes>

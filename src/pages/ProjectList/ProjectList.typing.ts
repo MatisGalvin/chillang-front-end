@@ -1,5 +1,5 @@
 import { IProject } from "../../typings/models/project.typing";
 
-export interface IProjectCreate {
+export interface IProjectList {
   projectList: IProject | undefined;
 }

@@ -1,14 +1,13 @@
 import { Sidebar } from "./containers/Sidebar/Sidebar";
-import axios from "axios";
-import { SERVER_URL } from "./config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Workspace } from "./containers/Workspace/Workspace";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { IProject } from "./typings/models/project.typing";
-import useAsyncEffect from "use-async-effect";
 import { customTheme } from "./styles/theme";
-
+import { useAppSelector, useAppDispatch } from "./redux/hooks/hooks";
+import { fetchUser } from "./redux/User/User.slice";
+import useAsyncEffect from "use-async-effect/types";
 /**
  * Component that used axios to request data for a specific user.
  * If a user is set, it will display the sidebar (left part of the website) and
@@ -23,18 +22,28 @@ export function App() {
   const [project, setProject] = useState<IProject | undefined>();
   const [user, setUser] = useState();
 
-  useAsyncEffect(async () => {
-    const uniqUser = await axios.get(
-      `${SERVER_URL}/users/61e80f089810ec398b36e8f2
-      `
-    );
-    setUser(uniqUser.data._id);
-    if (uniqUser.data.projects.length === 0) {
-      setProject(undefined);
-    } else {
-      setProject(uniqUser.data.projects[0]);
-    }
-  }, []);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser("61e80f089810ec398b36e8f2"));
+  }, [dispatch]);
+
+  const userConnected = useAppSelector((state) => {
+    console.log(state);
+  });
+
+  // useAsyncEffect(async () => {
+  //   const uniqUser = await axios.get(
+  //     `${SERVER_URL}/users/61e80f089810ec398b36e8f2
+  //     `
+  //   );
+  //   setUser(uniqUser.data._id);
+  //   if (uniqUser.data.projects.length === 0) {
+  //     setProject(undefined);
+  //   } else {
+  //     setProject(uniqUser.data.projects[0]);
+  //   }
+  // }, []);
 
   return (
     <Grid
