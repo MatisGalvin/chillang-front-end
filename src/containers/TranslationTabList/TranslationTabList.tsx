@@ -11,7 +11,6 @@ import {
   Thead,
   Tr,
   Text,
-  Button,
 } from "@chakra-ui/react";
 import ReactCountryFlag from "react-country-flag";
 import { customTheme } from "../../styles/theme";

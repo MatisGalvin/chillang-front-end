@@ -1,0 +1,7 @@
+{
+  "home": "Home",
+  "projects": "Projects",
+  "selectProject": "Select your project",
+  "selectProjectIfNone": "You don't have any project yet",
+  "createNewProjectButton": "CREATE A NEW PROJECT"
+}
