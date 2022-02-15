@@ -1,11 +1,13 @@
-import { Sidebar } from "./containers/sidebar/sidebar.container";
 import { useEffect } from "react";
-import { Workspace } from "./containers/workspace/workspace.container";
+import { Workspace, Sidebar } from "containers";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { customTheme } from "./styles/theme";
-import { useAppSelector, useAppDispatch } from "./redux/";
-import { fetchUser } from "./redux/user/user.slice";
-import { selectCurrentUser } from "./redux/user/user.selector";
+import { customTheme } from "styles";
+import {
+  fetchUser,
+  selectCurrentUser,
+  useAppSelector,
+  useAppDispatch,
+} from "models";
 /**
  * Component that used axios to request data for a specific user and stock it into the store.
  * If a user is set, it will display the sidebar (left part of the website) and

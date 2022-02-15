@@ -1,9 +1,13 @@
-import { IBoxLinkProps } from "./box-link.component.typing";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import { customTheme } from "../../styles/theme";
+import { customTheme } from "styles";
 
-function BoxLink(p: IBoxLinkProps) {
+function BoxLink(p: {
+  icon?: JSX.Element;
+  key?: any;
+  title: string;
+  link: string;
+}) {
   let resolved = useResolvedPath(p.link);
   let match = useMatch({ path: resolved.pathname, end: true });
 
@@ -14,7 +18,7 @@ function BoxLink(p: IBoxLinkProps) {
       py="2"
       rounded="lg"
     >
-      {p.icone}
+      {p.icon}
     </Box>
   );
 
@@ -45,7 +49,7 @@ function BoxLink(p: IBoxLinkProps) {
           alignItems="center"
           justifyContent="flex-start"
         >
-          {p.icone && displayIconeIfIconePropsIsSet}
+          {p.icon && displayIconeIfIconePropsIsSet}
           <Text ml="2">{p.title}</Text>
         </Flex>
       </Link>

@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
-import { customTheme } from "../../styles/theme";
+import { customTheme } from "styles";
 
 function Sandbox() {
   return (

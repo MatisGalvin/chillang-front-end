@@ -13,17 +13,20 @@ import {
   Text,
 } from "@chakra-ui/react";
 import ReactCountryFlag from "react-country-flag";
-import { customTheme } from "../../styles/theme";
+import { customTheme } from "styles";
 import { useState } from "react";
 import useAsyncEffect from "use-async-effect";
-import { ITranslationTabListProps } from "./translation-tab-list.container.typing";
 import { useTranslation } from "react-i18next";
+import { IPage, ICountry } from "typings";
 
 /**
  * It is used to display the tab and its datas.
  */
 
-function TranslationTabList(p: ITranslationTabListProps) {
+function TranslationTabList(p: {
+  supportedLanguages: ICountry[];
+  page: IPage | undefined;
+}) {
   const { t } = useTranslation("pagePage");
   const [currentLang, setCurrentLang] = useState<any>();
   let currentFile = p.page?.translationFiles.find(

@@ -1,7 +1,5 @@
-export interface ICountry {
-  name: string;
-  code: string;
-}
+import { ICountry } from "typings";
+
 
 export const COUNTRY_INFORMATIONS: ICountry[] = [
   { name: "Afghanistan", code: "AF" },

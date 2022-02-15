@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { SERVER_URL } from "../../config";
-import { IUser } from "../../typings/models/user-model.typing";
+import { SERVER_URL } from "configs";
+import { IUser } from "typings";
 
 /**
  * Setting up a slice for User with an initial state empty
@@ -25,4 +25,5 @@ export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
   return response.data as IUser;
 });
 
-export default userSlice.reducer;
+const userReducer = userSlice.reducer
+export { userReducer }

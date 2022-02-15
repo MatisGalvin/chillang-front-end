@@ -8,12 +8,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
-import { customTheme } from "../../styles/theme";
+import { customTheme } from "styles";
 import { Link } from "react-router-dom";
-import { IProjectList } from "./project-list.page.typing";
 import { useTranslation } from "react-i18next";
+import { IProject } from "typings";
 
-function ProjectList(p: IProjectList) {
+function ProjectList(p: { projectList: IProject | undefined }) {
   const { t } = useTranslation("workspaceContainer");
 
   const breadcrumb = (

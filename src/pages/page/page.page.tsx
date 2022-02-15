@@ -9,21 +9,20 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { SERVER_URL } from "../../config";
-import { IPage } from "../../typings/models/page-model.typing";
-import { customTheme } from "../../styles/theme";
+import { SERVER_URL } from "configs";
+import { customTheme } from "styles";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
-import { IPageProps } from "./page.page.typing";
-import { TranslationTabList } from "../../containers/translation-tab-list/translation-tab-list.container";
+import { TranslationTabList } from "containers";
+import { ICountry, IPage } from "typings";
 
 /**
  * Component that returns a breadcrumb based on the current location,
  * the banner for the progress, and the translation tab
  */
 
-function Page(p: IPageProps) {
+function Page(p: { supportedLanguages: ICountry[] }) {
   const { t } = useTranslation("pagePage");
   const params = useParams<{ _id: string }>();
   const [page, setPage] = useState<IPage>();

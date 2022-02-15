@@ -1,11 +1,10 @@
-import { PageLinkListProps } from "./page-link-list.container.typing";
-import { PageLinkItem } from "../../components/page-link-item/page-link-item.component";
-
+import { PageLinkItem } from "components";
+import { IPage } from "typings";
 /**
  * Component that creates a list of links based on the pageList received from the props
  */
 
-function PageLinkList(p: PageLinkListProps) {
+function PageLinkList(p: { pageList: IPage[] }) {
   return (
     <>
       {p.pageList.map((page) => {

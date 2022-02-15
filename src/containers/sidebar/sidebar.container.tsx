@@ -1,18 +1,17 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { customTheme } from "../../styles/theme";
-import { PageLinkList } from "../page-link-list/page-link-list.container";
-import { SidebarProps } from "./sidebar.container.typing";
+import { customTheme } from "styles";
+import { PageLinkList } from "containers";
 import { FaProjectDiagram } from "react-icons/fa";
-import { IProject } from "../../typings/models/project-model.typing";
-import { BoxLink } from "../../components/box-link/box-link.component";
+import { IProject } from "typings";
+import { BoxLink } from "components";
 
 /**
  * Component that contains the header logo, a divider, the name of the actual project and the pages
  * associated to it.
  */
 
-function Sidebar(p: SidebarProps) {
+function Sidebar(p: { project: IProject | undefined }) {
   const { t } = useTranslation("sidebarContainer");
 
   const headerLogo = (
@@ -41,7 +40,7 @@ function Sidebar(p: SidebarProps) {
 
   const renderProjectSection = (
     <BoxLink
-      icone={<FaProjectDiagram color="white" />}
+      icon={<FaProjectDiagram color="white" />}
       link="/projects"
       title="Projects"
     />

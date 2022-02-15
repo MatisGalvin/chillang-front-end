@@ -2,11 +2,11 @@ import { AnyAction, applyMiddleware, createStore, combineReducers } from "@redux
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import userSliceReducer from "./user/user.slice";
+import { userReducer } from "models";
 /**
  * ROOT REDUCER
 */
-const rootReducer = combineReducers({ user: userSliceReducer });
+const rootReducer = combineReducers({ user: userReducer });
 /**
  * MIDDLEWARES
  */

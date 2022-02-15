@@ -1,4 +1,4 @@
-import { IStore } from "..";
+import { IStore } from "models";
 
 function selectCurrentUser(store: IStore) {
   return store.user;

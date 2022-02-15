@@ -1,9 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Page } from "../../pages/page/page.page";
-import { Home } from "../../pages/home/home.page";
-import { NotFound404 } from "../../pages/not-found-404/not-found-404.page";
-import { IWorkspaceProps } from "./workspace.container.typing";
-import { ProjectList } from "../../pages/project-list/project-list.page";
+import { Page, NotFound404, Home, ProjectList } from "pages";
+import { IProject } from "typings";
 
 /**
  * It contains only routes that display a "Page" component or a "Home" component or a "NotFound404" component.
@@ -11,7 +8,7 @@ import { ProjectList } from "../../pages/project-list/project-list.page";
  *
  */
 
-function Workspace(p: IWorkspaceProps) {
+function Workspace(p: { project: IProject | undefined }) {
   if (p.project !== undefined) {
     return (
       <Routes>

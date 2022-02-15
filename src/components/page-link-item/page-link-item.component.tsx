@@ -1,13 +1,12 @@
-import { shortenString } from "../../helpers/string-utils";
-import { BoxLink } from "../box-link/box-link.component";
-import { PageLinkItemProps } from "./page-link-item.component.typing";
+import { shortenString } from "helpers";
+import { BoxLink } from "components";
 
 /**
  * Component that receive a page ID and a page name by the props.
  * With those informations, it create a link in the sidebar.
  */
 
-function PageLinkItem(p: PageLinkItemProps) {
+function PageLinkItem(p: { pageID: string; pageName: string }) {
   const link = "/page/" + p.pageID;
 
   return (
