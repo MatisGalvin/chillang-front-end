@@ -5,7 +5,7 @@ import { Workspace } from "./containers/Workspace/Workspace";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { IProject } from "./typings/models/project.typing";
 import { customTheme } from "./styles/theme";
-import { useAppSelector, useAppDispatch } from "./redux/hooks/hooks";
+import { useAppSelector, useAppDispatch } from "./redux/";
 import { fetchUser } from "./redux/User/User.slice";
 import useAsyncEffect from "use-async-effect/types";
 /**
@@ -25,7 +25,7 @@ export function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser("61e80f089810ec398b36e8f2"));
+    dispatch(fetchUser("zaeaze"));
   }, [dispatch]);
 
   const userConnected = useAppSelector((state) => {

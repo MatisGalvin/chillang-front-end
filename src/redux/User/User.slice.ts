@@ -27,7 +27,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const fetchUser = createAsyncThunk("getUser", async (userId) => {
+export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
   // 1er action.type, 2eme, payload
   const response = await axios.get(`${SERVER_URL}/users/${userId}`);
   return response.data; //PAYLOAD DE MON ACTION
