@@ -5,41 +5,38 @@ import {
   BreadcrumbLink,
   Text,
   Flex,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { SERVER_URL } from "../../config";
-import { IPage } from "../../interfaces/models/page.typing";
+import { IPage } from "../../typings/models/page.typing";
 import { customTheme } from "../../styles/theme";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
+import { IPageProps } from "./Page.typing";
+import { TranslationTabList } from "../../containers/TranslationTabList/TranslationTabList";
 
 /**
  * Component that returns a breadcrumb based on the current location,
  * the banner for the progress, and the translation tab
  */
 
-function Page() {
-  const { t } = useTranslation();
-  const params = useParams();
+function Page(p: IPageProps) {
+  const { t } = useTranslation("pagePage");
+  const params = useParams<{ _id: string }>();
   const [page, setPage] = useState<IPage>();
-
   useAsyncEffect(async () => {
     const getOnePage = await axios.get<IPage>(
-      `${SERVER_URL}/page/${params.id}`
+      `${SERVER_URL}/pages/${params._id}`
     );
+
     setPage(getOnePage.data);
-  }, [params.id]);
+  }, [params._id]);
 
   const breadcrumb = (
-    <Breadcrumb marginBottom={customTheme.margin.large}>
+    <Breadcrumb marginBottom="5">
       <BreadcrumbItem>
         <BreadcrumbLink
           fontWeight={customTheme.font_weight.light}
@@ -47,37 +44,36 @@ function Page() {
           as={Link}
           to="/"
         >
-          {t("pages")}
+          {t("pagePage:pages")}
         </BreadcrumbLink>
       </BreadcrumbItem>
 
       <BreadcrumbItem>
-        <BreadcrumbLink fontWeight={customTheme.font_weight.normal}>
-          {page?.name}
-        </BreadcrumbLink>
+        <BreadcrumbLink>{page?.name}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
 
   const banner = (
     <Box
-      padding={customTheme.paddingAround.normal}
+      padding="3"
+      pt="8"
       backgroundImage="../../../assets/img/banner.png"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
-      borderRadius={customTheme.border_radius.medium}
+      borderRadius="lg"
     >
       <Flex>
         <Box
-          background={customTheme.colors.white}
+          background="whiteAlpha.900"
           color={customTheme.colors.blue_chillang}
-          marginLeft={customTheme.margin.mediumL}
+          marginLeft="2"
           display="flex"
           alignItems="center"
           justifyContent="center"
           padding="0 6px"
-          borderRadius={customTheme.border_radius.medium}
+          borderRadius="xl"
           boxShadow="lg"
         >
           <VscFile size="22px" />
@@ -85,51 +81,28 @@ function Page() {
         <Text
           fontSize={customTheme.font_size.large}
           color={customTheme.colors.white}
-          fontWeight={customTheme.font_weight.bold}
-          marginLeft={customTheme.margin.large}
+          fontWeight="bold"
+          marginLeft="5"
         >
           {page?.name}
         </Text>
       </Flex>
       <Box
-        padding={customTheme.paddingAround.normal}
-        borderRadius={customTheme.border_radius.medium}
-        margin={customTheme.marginAround.normal}
-        backgroundColor={customTheme.colors.whiteOpacityLight}
+        padding="5"
+        borderRadius="lg"
+        margin="2"
+        mt="4"
+        backgroundColor="whiteAlpha.800"
         boxShadow="xl"
       >
         <Text
-          fontWeight={customTheme.font_weight.bold}
+          fontWeight="bold"
           fontSize={customTheme.font_size.medium}
           color={customTheme.colors.font_color}
         >
-          {t("progress")}
+          {t("pagePage:progress")}
         </Text>
       </Box>
-    </Box>
-  );
-
-  const translationTab = (
-    <Box
-      backgroundColor={customTheme.colors.white}
-      padding={customTheme.paddingAround.normal}
-      marginTop={customTheme.margin.large}
-      borderRadius={customTheme.border_radius.medium}
-    >
-      <Tabs variant="line">
-        <TabList>
-          <Tab>{t("english")}</Tab>
-          <Tab>{t("french")}</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>{t("englishContent")}</p>
-          </TabPanel>
-          <TabPanel>
-            <p>{t("frenchContent")}</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
     </Box>
   );
 
@@ -137,7 +110,10 @@ function Page() {
     <>
       {breadcrumb}
       {banner}
-      {translationTab}
+      <TranslationTabList
+        supportedLanguages={p.supportedLanguages}
+        page={page}
+      />
     </>
   );
 }

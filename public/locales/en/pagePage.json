@@ -1,14 +1,16 @@
 {
   "loadMessage": "Loading...",
-  "mainTitle": "Chillang",
   "pages": "Pages",
   "projectTarget": "You are working on the project",
   "error": "There's nothing here !",
-  "home": "Pick a page that you want to modify.",
   "progress": "Progress",
   "english": "English",
   "french": "French",
   "englishContent": "English content",
   "frenchContent": "French content",
-  "pagesAvailable": "Here is the available pages for this project."
+  "pagesAvailable": "Here is the available pages for this project.",
+  "translation": "Translation",
+  "completion": "Completion",
+  "identifier": "Identifier",
+  "description": "Description"
 }

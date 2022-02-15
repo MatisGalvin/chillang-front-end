@@ -1,6 +1,4 @@
-import { IPage } from "../../interfaces/models/page.typing";
-
-export interface IPageLinkItemProps {
+export interface PageLinkItemProps {
   pageID: string;
   pageName: string;
 }

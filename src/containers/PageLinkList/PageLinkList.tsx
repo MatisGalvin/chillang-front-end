@@ -9,7 +9,9 @@ function PageLinkList(p: PageLinkListProps) {
   return (
     <>
       {p.pageList.map((page) => {
-        return <PageLinkItem pageID={page._id} pageName={page.name} />;
+        return (
+          <PageLinkItem key={page._id} pageID={page._id} pageName={page.name} />
+        );
       })}
     </>
   );

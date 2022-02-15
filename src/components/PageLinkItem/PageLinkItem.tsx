@@ -2,14 +2,14 @@ import { Box } from "@chakra-ui/react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { shortenString } from "../../helpers/StringFormat/shortenString";
 import { customTheme } from "../../styles/theme";
-import { IPageLinkItemProps } from "./PageLinkItem.typing";
+import { PageLinkItemProps } from "./PageLinkItem.typing";
 
 /**
  * Component that receive a page ID and a page name by the props.
  * With those informations, it create a link in the sidebar.
  */
 
-function PageLinkItem(p: IPageLinkItemProps) {
+function PageLinkItem(p: PageLinkItemProps) {
   let resolved = useResolvedPath("/page/" + p.pageID);
   let match = useMatch({ path: resolved.pathname, end: true });
 
@@ -17,17 +17,20 @@ function PageLinkItem(p: IPageLinkItemProps) {
     <Box
       key={p.pageID}
       marginBottom="3"
-      borderRadius={customTheme.border_radius.medium}
-      boxShadow="base"
-      bg={customTheme.colors.white}
+      borderRadius="lg"
+      boxShadow={match ? "md" : "inner"}
+      border="1px solid"
+      style={
+        match
+          ? { borderColor: "rgba(79, 209, 197, 0.5)" }
+          : { borderColor: "rgba(255, 255, 255, 0.3" }
+      }
       w="100%"
-      p={3}
+      p={4}
     >
       <Link
         style={{
-          fontWeight: match
-            ? customTheme.font_weight.bold
-            : customTheme.font_weight.light,
+          fontWeight: match ? "bold" : "normal",
           color: match
             ? customTheme.colors.font_color
             : customTheme.colors.gray,
