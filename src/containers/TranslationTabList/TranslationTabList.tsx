@@ -11,7 +11,6 @@ import {
   Thead,
   Tr,
   Text,
-  Button,
 } from "@chakra-ui/react";
 import ReactCountryFlag from "react-country-flag";
 import { customTheme } from "../../styles/theme";
@@ -83,8 +82,6 @@ function TranslationTabList(p: ITranslationTabListProps) {
     </Thead>
   );
 
-  const buttonAddTranslation = <Button>Ajouter une row</Button>;
-
   const tabListBodyContent = (
     <Tbody>
       {currentFile?.data.map((currentTranslateFile) => {
@@ -99,7 +96,6 @@ function TranslationTabList(p: ITranslationTabListProps) {
           </Tr>
         );
       })}
-      {buttonAddTranslation}
     </Tbody>
   );
 
@@ -111,7 +107,7 @@ function TranslationTabList(p: ITranslationTabListProps) {
   );
 
   return (
-    <Box p="3" mt="5" borderRadius="lg" boxShadow="md">
+    <Box p="3" mt="5" borderRadius="lg" boxShadow="md" backgroundColor="white">
       <Tabs variant="enclosed">
         {tabListHeader}
         {tabListBody}

@@ -1,7 +1,5 @@
-import { Box } from "@chakra-ui/react";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { shortenString } from "../../helpers/StringFormat/shortenString";
-import { customTheme } from "../../styles/theme";
+import { BoxLink } from "../BoxLink/BoxLink";
 import { PageLinkItemProps } from "./PageLinkItem.typing";
 
 /**
@@ -10,36 +8,10 @@ import { PageLinkItemProps } from "./PageLinkItem.typing";
  */
 
 function PageLinkItem(p: PageLinkItemProps) {
-  let resolved = useResolvedPath("/page/" + p.pageID);
-  let match = useMatch({ path: resolved.pathname, end: true });
+  const link = "/page/" + p.pageID;
 
   return (
-    <Box
-      key={p.pageID}
-      marginBottom="3"
-      borderRadius="lg"
-      boxShadow={match ? "md" : "inner"}
-      border="1px solid"
-      style={
-        match
-          ? { borderColor: "rgba(79, 209, 197, 0.5)" }
-          : { borderColor: "rgba(255, 255, 255, 0.3" }
-      }
-      w="100%"
-      p={4}
-    >
-      <Link
-        style={{
-          fontWeight: match ? "bold" : "normal",
-          color: match
-            ? customTheme.colors.font_color
-            : customTheme.colors.gray,
-        }}
-        to={"/page/" + p.pageID}
-      >
-        {shortenString(p.pageName, 7)}
-      </Link>
-    </Box>
+    <BoxLink link={link} key={p.pageID} title={shortenString(p.pageName, 7)} />
   );
 }
 
