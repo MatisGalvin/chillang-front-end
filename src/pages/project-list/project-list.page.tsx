@@ -10,7 +10,7 @@ import {
 import { FiPlus } from "react-icons/fi";
 import { customTheme } from "../../styles/theme";
 import { Link } from "react-router-dom";
-import { IProjectList } from "./ProjectList.typing";
+import { IProjectList } from "./project-list.page.typing";
 import { useTranslation } from "react-i18next";
 
 function ProjectList(p: IProjectList) {

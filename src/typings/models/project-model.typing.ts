@@ -1,4 +1,4 @@
-import { IPage } from "./page.typing";
+import { IPage } from "./page-model.typing";
 
 interface ICountry {
   name: string;

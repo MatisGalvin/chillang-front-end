@@ -16,7 +16,7 @@ import ReactCountryFlag from "react-country-flag";
 import { customTheme } from "../../styles/theme";
 import { useState } from "react";
 import useAsyncEffect from "use-async-effect";
-import { ITranslationTabListProps } from "./TranslationTabList.typing";
+import { ITranslationTabListProps } from "./translation-tab-list.container.typing";
 import { useTranslation } from "react-i18next";
 
 /**

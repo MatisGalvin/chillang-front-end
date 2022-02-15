@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { customTheme } from "../../styles/theme";
-import { PageLinkList } from "../PageLinkList/PageLinkList";
-import { SidebarProps } from "./Sidebar.typing";
+import { PageLinkList } from "../page-link-list/page-link-list.container";
+import { SidebarProps } from "./sidebar.container.typing";
 import { FaProjectDiagram } from "react-icons/fa";
-import { IProject } from "../../typings/models/project.typing";
-import { BoxLink } from "../../components/BoxLink/BoxLink";
+import { IProject } from "../../typings/models/project-model.typing";
+import { BoxLink } from "../../components/box-link/box-link.component";
 
 /**
  * Component that contains the header logo, a divider, the name of the actual project and the pages

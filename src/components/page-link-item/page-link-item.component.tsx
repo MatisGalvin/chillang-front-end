@@ -1,6 +1,6 @@
-import { shortenString } from "../../helpers/StringFormat/shortenString";
-import { BoxLink } from "../BoxLink/BoxLink";
-import { PageLinkItemProps } from "./PageLinkItem.typing";
+import { shortenString } from "../../helpers/string-utils";
+import { BoxLink } from "../box-link/box-link.component";
+import { PageLinkItemProps } from "./page-link-item.component.typing";
 
 /**
  * Component that receive a page ID and a page name by the props.

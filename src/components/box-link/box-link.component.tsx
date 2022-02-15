@@ -1,4 +1,4 @@
-import { IBoxLinkProps } from "./BoxLink.typing";
+import { IBoxLinkProps } from "./box-link.component.typing";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { customTheme } from "../../styles/theme";

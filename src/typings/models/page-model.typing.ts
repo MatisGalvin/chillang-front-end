@@ -1,4 +1,4 @@
-import { ITranslationFile } from "./translationFile.typing";
+import { ITranslationFile } from "./translation-file-model.typing";
 
 export interface IPage {
   name: string;

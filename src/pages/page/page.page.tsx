@@ -10,13 +10,13 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { SERVER_URL } from "../../config";
-import { IPage } from "../../typings/models/page.typing";
+import { IPage } from "../../typings/models/page-model.typing";
 import { customTheme } from "../../styles/theme";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
-import { IPageProps } from "./Page.typing";
-import { TranslationTabList } from "../../containers/TranslationTabList/TranslationTabList";
+import { IPageProps } from "./page.page.typing";
+import { TranslationTabList } from "../../containers/translation-tab-list/translation-tab-list.container";
 
 /**
  * Component that returns a breadcrumb based on the current location,

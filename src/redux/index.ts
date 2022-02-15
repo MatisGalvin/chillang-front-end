@@ -1,22 +1,29 @@
-import { AnyAction, applyMiddleware, createStore } from "@reduxjs/toolkit";
+import { AnyAction, applyMiddleware, createStore, combineReducers } from "@reduxjs/toolkit";
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "./reducer";
-
+import userSliceReducer from "./user/user.slice";
+/**
+ * ROOT REDUCER
+*/
+const rootReducer = combineReducers({ user: userSliceReducer });
+/**
+ * MIDDLEWARES
+ */
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
 
+/**
+ * STORE INIT
+ */
 const store = createStore(rootReducer, composedEnhancer);
 
+/**
+ * HOOKS
+ */
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-// Infer the `IStore` and `AppDispatch` types from the store itself
 export type IStore = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch &
   ThunkDispatch<IStore, null, AnyAction>;
-
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-
 export const useAppSelector: TypedUseSelectorHook<IStore> = useSelector;
 
 export { store };

@@ -1,7 +1,7 @@
 import { Stack, Button } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { customTheme } from "../../styles/theme";
-import { ISwitchLanguageProps } from "./SwitchLanguage.typing";
+import { ISwitchLanguageProps } from "./switch-language.component.typing";
 
 /**
  * Component that takes an aray of languages, and display on the same row, a button for each language.

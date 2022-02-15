@@ -1,4 +1,4 @@
-import { IProject } from "./project.typing";
+import { IProject } from "./project-model.typing";
 
 export interface IUser {
   username: string;

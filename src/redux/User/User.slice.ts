@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SERVER_URL } from "../../config";
-import { IUser } from "../../typings/models/user.typing";
+import { IUser } from "../../typings/models/user-model.typing";
 
 /**
  * Setting up a slice for User with an initial state empty
