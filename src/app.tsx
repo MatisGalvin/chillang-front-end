@@ -1,15 +1,13 @@
 import { Sidebar } from "./containers/Sidebar/Sidebar";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { Workspace } from "./containers/Workspace/Workspace";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { IProject } from "./typings/models/project.typing";
 import { customTheme } from "./styles/theme";
 import { useAppSelector, useAppDispatch } from "./redux/";
 import { fetchUser } from "./redux/User/User.slice";
-import useAsyncEffect from "use-async-effect/types";
+import { selectCurrentUser } from "./redux/User/User.selector";
 /**
- * Component that used axios to request data for a specific user.
+ * Component that used axios to request data for a specific user and stock it into the store.
  * If a user is set, it will display the sidebar (left part of the website) and
  * the workspace (right part of the website). It will send by props every informations needed by the
  * Sidebar component and the Workspace component.
@@ -18,32 +16,13 @@ import useAsyncEffect from "use-async-effect/types";
  */
 
 export function App() {
-  const { t } = useTranslation();
-  const [project, setProject] = useState<IProject | undefined>();
-  const [user, setUser] = useState();
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser("zaeaze"));
+    dispatch(fetchUser("61e80f089810ec398b36e8f2"));
   }, [dispatch]);
 
-  const userConnected = useAppSelector((state) => {
-    console.log(state);
-  });
-
-  // useAsyncEffect(async () => {
-  //   const uniqUser = await axios.get(
-  //     `${SERVER_URL}/users/61e80f089810ec398b36e8f2
-  //     `
-  //   );
-  //   setUser(uniqUser.data._id);
-  //   if (uniqUser.data.projects.length === 0) {
-  //     setProject(undefined);
-  //   } else {
-  //     setProject(uniqUser.data.projects[0]);
-  //   }
-  // }, []);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   return (
     <Grid
@@ -54,10 +33,10 @@ export function App() {
       height="100vh"
     >
       <GridItem p="2" w="100%">
-        <Sidebar project={project} />
+        <Sidebar project={currentUser?.projects?.[0]} />
       </GridItem>
       <GridItem p="2" w="100%">
-        <Workspace project={project} />
+        <Workspace project={currentUser?.projects?.[0]} />
       </GridItem>
     </Grid>
   );

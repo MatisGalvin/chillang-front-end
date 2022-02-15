@@ -47,7 +47,7 @@ function Sidebar(p: SidebarProps) {
     />
   );
 
-  const pages = (
+  const pageLabel = (
     <Text
       mb="5"
       mt="5"
@@ -61,7 +61,7 @@ function Sidebar(p: SidebarProps) {
   const renderPageSection = (project: IProject) => {
     return (
       <>
-        {pages}
+        {pageLabel}
         <PageLinkList key={project.name} pageList={project.pages} />
       </>
     );

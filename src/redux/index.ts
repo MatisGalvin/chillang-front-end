@@ -9,14 +9,14 @@ const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
 const store = createStore(rootReducer, composedEnhancer);
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
+// Infer the `IStore` and `AppDispatch` types from the store itself
+export type IStore = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch & ThunkDispatch<RootState, null, AnyAction>;
+export type AppDispatch = typeof store.dispatch &
+  ThunkDispatch<IStore, null, AnyAction>;
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
+export const useAppSelector: TypedUseSelectorHook<IStore> = useSelector;
 
 export { store };
