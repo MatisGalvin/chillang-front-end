@@ -17,6 +17,7 @@ const customTheme_ = {
     divider_bright: "#E2E8F0",
     font_color: "#2D3748",
     gray: "#A0AEC0",
+    gray_project: "#CCD3DD",
     blue_chillang: "#4FD1C5",
     borderColorTab: "#84DFD6",
     orange: "#F2994A",
