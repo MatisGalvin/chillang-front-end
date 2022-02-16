@@ -29,7 +29,7 @@ function Workspace(p: { project: IProject | undefined }) {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="/newProject"
+          path="/projects"
           element={<ProjectList projectList={p.project} />}
         />
         <Route path="*" element={<NotFound404 />} />

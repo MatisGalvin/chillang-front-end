@@ -21,7 +21,7 @@ export function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser("61e80f089810ec398b36e8f2"));
+    dispatch(fetchUser("620bd8fd456c8acf6adb4752"));
   }, [dispatch]);
 
   const currentUser = useAppSelector(selectCurrentUser);

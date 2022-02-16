@@ -50,7 +50,7 @@ function ProjectList(p: { projectList: IProject | undefined }) {
           fontWeight="bold"
           my="20"
         >
-          {t("selectProject")}
+          {p.projectList ? t("selectProject") : t("selectProjectIfNone")}
         </Text>
         <ButtonProjectList
           border="2px dotted"
