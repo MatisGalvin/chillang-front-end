@@ -3,8 +3,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
-  Flex,
   Text,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
@@ -12,6 +10,7 @@ import { customTheme } from "styles";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IProject } from "typings";
+import { ButtonProjectList } from "components";
 
 function ProjectList(p: { projectList: IProject | undefined }) {
   const { t } = useTranslation("workspaceContainer");
@@ -53,21 +52,19 @@ function ProjectList(p: { projectList: IProject | undefined }) {
         >
           {t("selectProject")}
         </Text>
-        <Button
-          height="120px"
-          width="280px"
-          backgroundColor="white"
-          border=" 2px dotted"
-          borderColor={customTheme.colors.blue_chillang}
-          borderRadius="lg"
+        <ButtonProjectList
+          border="2px dotted"
+          icone={<FiPlus size="42" color={customTheme.colors.blue_chillang} />}
+          label={t("createNewProjectButton")}
+        />
+        <Box
+          mt="4"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <Flex alignItems="center" justifyContent="center">
-            <FiPlus size="42" color={customTheme.colors.blue_chillang} />
-            <Text color={customTheme.colors.blue_chillang} fontWeight="bold">
-              {t("createNewProjectButton")}
-            </Text>
-          </Flex>
-        </Button>
+          <ButtonProjectList border="4px solid" label={p.projectList?.name} />
+        </Box>
       </Box>
     </>
   );
