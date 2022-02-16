@@ -32,7 +32,7 @@ function Workspace(p: IWorkspaceProps) {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="/newProject"
+          path="/projects"
           element={<ProjectList projectList={p.project} />}
         />
         <Route path="*" element={<NotFound404 />} />

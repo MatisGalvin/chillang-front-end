@@ -51,7 +51,7 @@ function ProjectList(p: IProjectList) {
           fontWeight="bold"
           my="20"
         >
-          {t("selectProject")}
+          {p.projectList ? t("selectProject") : t("selectProjectIfNone")}
         </Text>
         <Button
           height="120px"
