@@ -45,7 +45,11 @@ function ProjectList(p: { projectList: IProject | undefined }) {
       >
         <Text
           textAlign="center"
-          color={customTheme.colors.blue_chillang}
+          color={
+            p.projectList
+              ? customTheme.colors.blue_chillang
+              : customTheme.colors.gray_project
+          }
           fontSize="2xl"
           fontWeight="bold"
           my="20"
@@ -57,14 +61,16 @@ function ProjectList(p: { projectList: IProject | undefined }) {
           icone={<FiPlus size="42" color={customTheme.colors.blue_chillang} />}
           label={t("createNewProjectButton")}
         />
-        <Box
-          mt="4"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <ButtonProjectList border="4px solid" label={p.projectList?.name} />
-        </Box>
+        {p.projectList && (
+          <Box
+            mt="4"
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <ButtonProjectList border="4px solid" label={p.projectList?.name} />
+          </Box>
+        )}
       </Box>
     </>
   );
