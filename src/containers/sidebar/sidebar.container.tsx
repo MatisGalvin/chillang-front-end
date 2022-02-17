@@ -5,14 +5,19 @@ import { PageLinkList } from "containers";
 import { FaProjectDiagram } from "react-icons/fa";
 import { IProject } from "typings";
 import { BoxLink } from "components";
+import { getCurrentProject, useAppSelector } from "models";
 
 /**
- * Component that contains the header logo, a divider, the name of the actual project and the pages
+ * Component that contains the header logo, a divider, the name of the current project and the pages
  * associated to it.
+ * The current project is set in the project-list-page by clicking on the button associeted to it.
  */
 
 function Sidebar(p: { project: IProject | undefined }) {
   const { t } = useTranslation("sidebarContainer");
+
+  const currentProject = useAppSelector(getCurrentProject);
+
   const headerLogo = (
     <header>
       <Flex alignItems="center">
@@ -65,7 +70,7 @@ function Sidebar(p: { project: IProject | undefined }) {
       {headerLogo}
       {divider}
       {renderProjectSection}
-      {p.project && renderPageSection(p.project)}
+      {currentProject && renderPageSection(currentProject)}
     </>
   );
 }

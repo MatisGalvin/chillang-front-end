@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Page, NotFound404, Home, ProjectPage } from "pages";
+import { Page, NotFound404, Home, ProjectListPage } from "pages";
 import { IProject } from "typings";
 
 /**
@@ -18,7 +18,7 @@ function Workspace(p: { project: IProject | undefined }) {
         />
       )}
       <Route path="/" element={<Home />} />
-      <Route path="/projects" element={<ProjectPage />} />
+      <Route path="/projects" element={<ProjectListPage />} />
       <Route path="*" element={<NotFound404 />} />
     </Routes>
   );

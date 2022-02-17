@@ -3,6 +3,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Flex,
   Text,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
@@ -15,16 +16,26 @@ import {
   useAppSelector,
   setCurrentProjectIndex,
   useAppDispatch,
+  getCurrentProject,
 } from "models";
 
-function ProjectPage() {
+/**
+ * Display the page where you can select a project if you have at least one.
+ * If you don't, you can create a new one here.
+ * By clicking on a button to select a project, it will put the index of this project into the store.
+ * We use this index to avoid going into the entiere user's project list but select directly the
+ * project associeted to this index and saving a lot's of time.
+ */
+
+function ProjectListPage() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("workspaceContainer");
 
   const userProjectList = useAppSelector(selectProjectList);
+  const currentProject = useAppSelector(getCurrentProject);
 
   if (!userProjectList) {
-    return <h1>Loading...</h1>;
+    return <h1>{t("workspaceContainer:loading")}</h1>;
   }
 
   const breadcrumb = (
@@ -40,14 +51,19 @@ function ProjectPage() {
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink>{t("projects")}</BreadcrumbLink>
+        <BreadcrumbLink>{t("workspaceContainer:projects")}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
 
   return (
     <>
-      {breadcrumb}
+      <Flex alignItems="center" justifyContent="space-between">
+        {breadcrumb}
+        <Text>
+          {t("workspaceContainer:myCurrentProject")} : {currentProject?.name}
+        </Text>
+      </Flex>
       <Box
         width="100%"
         p="5"
@@ -94,4 +110,4 @@ function ProjectPage() {
   );
 }
 
-export { ProjectPage };
+export { ProjectListPage };
