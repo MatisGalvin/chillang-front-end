@@ -25,5 +25,5 @@ export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
   return response.data as IUser;
 });
 
-const userReducer = userSlice.reducer
-export { userReducer }
+const userReducer = userSlice.reducer;
+export { userReducer };

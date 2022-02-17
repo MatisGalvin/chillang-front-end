@@ -9,11 +9,23 @@ import { FiPlus } from "react-icons/fi";
 import { customTheme } from "styles";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { IProject } from "typings";
-import { ButtonProjectList } from "components";
+import { BigButton } from "components";
+import {
+  selectProjectList,
+  useAppSelector,
+  setCurrentProjectIndex,
+  useAppDispatch,
+} from "models";
 
-function ProjectList(p: { projectList: IProject | undefined }) {
+function ProjectPage() {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation("workspaceContainer");
+
+  const userProjectList = useAppSelector(selectProjectList);
+
+  if (!userProjectList) {
+    return <h1>Loading...</h1>;
+  }
 
   const breadcrumb = (
     <Breadcrumb p="5" separator="/">
@@ -46,7 +58,7 @@ function ProjectList(p: { projectList: IProject | undefined }) {
         <Text
           textAlign="center"
           color={
-            p.projectList
+            userProjectList.length > 0
               ? customTheme.colors.blue_chillang
               : customTheme.colors.gray_project
           }
@@ -54,26 +66,32 @@ function ProjectList(p: { projectList: IProject | undefined }) {
           fontWeight="bold"
           my="20"
         >
-          {p.projectList ? t("selectProject") : t("selectProjectIfNone")}
+          {userProjectList.length > 0
+            ? t("selectProject")
+            : t("selectProjectIfNone")}
         </Text>
-        <ButtonProjectList
+        <BigButton
           border="2px dotted"
           icone={<FiPlus size="42" color={customTheme.colors.blue_chillang} />}
           label={t("createNewProjectButton")}
         />
-        {p.projectList && (
-          <Box
-            mt="4"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <ButtonProjectList border="4px solid" label={p.projectList?.name} />
-          </Box>
-        )}
+        <Box mt="14">
+          {userProjectList.map((project, projectIndex) => {
+            return (
+              <BigButton
+                key={project.name}
+                border="4px solid"
+                label={project.name}
+                onClick={() => {
+                  dispatch(setCurrentProjectIndex(projectIndex));
+                }}
+              />
+            );
+          })}
+        </Box>
       </Box>
     </>
   );
 }
 
-export { ProjectList };
+export { ProjectPage };

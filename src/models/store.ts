@@ -1,12 +1,21 @@
-import { AnyAction, applyMiddleware, createStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  applyMiddleware,
+  createStore,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userReducer } from "models";
+import { selectedProjectReducer } from "./selectedProject/selectedProject.slice";
 /**
  * ROOT REDUCER
-*/
-const rootReducer = combineReducers({ user: userReducer });
+ */
+const rootReducer = combineReducers({
+  user: userReducer,
+  selectedProject: selectedProjectReducer,
+});
 /**
  * MIDDLEWARES
  */

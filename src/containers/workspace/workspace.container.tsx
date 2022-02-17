@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Page, NotFound404, Home, ProjectList } from "pages";
+import { Page, NotFound404, Home, ProjectPage } from "pages";
 import { IProject } from "typings";
 
 /**
@@ -9,33 +9,19 @@ import { IProject } from "typings";
  */
 
 function Workspace(p: { project: IProject | undefined }) {
-  if (p.project !== undefined) {
-    return (
-      <Routes>
+  return (
+    <Routes>
+      {p.project && (
         <Route
           path="/page/:_id"
           element={<Page supportedLanguages={p.project.supportedLanguages} />}
         />
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/projects"
-          element={<ProjectList projectList={p.project} />}
-        />
-        <Route path="*" element={<NotFound404 />} />
-      </Routes>
-    );
-  } else {
-    return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/projects"
-          element={<ProjectList projectList={p.project} />}
-        />
-        <Route path="*" element={<NotFound404 />} />
-      </Routes>
-    );
-  }
+      )}
+      <Route path="/" element={<Home />} />
+      <Route path="/projects" element={<ProjectPage />} />
+      <Route path="*" element={<NotFound404 />} />
+    </Routes>
+  );
 }
 
 export { Workspace };

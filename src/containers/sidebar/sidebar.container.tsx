@@ -13,7 +13,6 @@ import { BoxLink } from "components";
 
 function Sidebar(p: { project: IProject | undefined }) {
   const { t } = useTranslation("sidebarContainer");
-
   const headerLogo = (
     <header>
       <Flex alignItems="center">
@@ -29,7 +28,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       </Flex>
     </header>
   );
-
   const divider = (
     <Box
       mt="5"
@@ -37,7 +35,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       bgGradient="linear(to-r, #E0E1E200, #E0E1E2, #E0E1E228)"
     />
   );
-
   const renderProjectSection = (
     <BoxLink
       icon={<FaProjectDiagram color="white" />}
@@ -45,7 +42,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       title="Projects"
     />
   );
-
   const pageLabel = (
     <Text
       mb="5"
@@ -56,7 +52,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       {t("sidebarContainer:pages")}
     </Text>
   );
-
   const renderPageSection = (project: IProject) => {
     return (
       <>
@@ -65,7 +60,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       </>
     );
   };
-
   return (
     <>
       {headerLogo}

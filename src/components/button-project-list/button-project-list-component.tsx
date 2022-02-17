@@ -1,10 +1,11 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { customTheme } from "styles";
 
-function ButtonProjectList(p: {
+function BigButton(p: {
   border: string;
   icone?: JSX.Element;
   label: string | undefined;
+  onClick?: () => void;
 }) {
   return (
     <Button
@@ -14,6 +15,8 @@ function ButtonProjectList(p: {
       border={p.border}
       borderColor={customTheme.colors.blue_chillang}
       borderRadius="lg"
+      mr="20"
+      onClick={p.onClick}
     >
       <Flex alignItems="center" justifyContent="center">
         {p.icone}
@@ -25,4 +28,4 @@ function ButtonProjectList(p: {
   );
 }
 
-export { ButtonProjectList };
+export { BigButton };
