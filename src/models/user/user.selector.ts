@@ -4,4 +4,8 @@ function selectCurrentUser(store: IStore) {
   return store.user;
 }
 
-export { selectCurrentUser };
+function getProjectList(store: IStore) {
+  return store.user?.projects;
+}
+
+export { selectCurrentUser, getProjectList };

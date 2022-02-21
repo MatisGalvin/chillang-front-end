@@ -1,4 +1,5 @@
 export interface ITranslationFile {
+  _id: string;
   lang: string;
   data: [
     {

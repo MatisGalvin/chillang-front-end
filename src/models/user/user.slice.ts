@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SERVER_URL } from "configs";
-import { IUser } from "typings";
+import { INavigation } from "models";
+import { ITranslationFile, IUser } from "typings";
 
 /**
  * Setting up a slice for User with an initial state empty
@@ -17,6 +18,13 @@ export const userSlice = createSlice({
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       return action.payload;
     });
+    builder.addCase(updateTranslationFileById.fulfilled, (state, action) => {
+      const navigation = action.payload.navigation;
+      state.projects[navigation.projectIndex!].pages[
+        navigation.pageIndex!
+      ].translationFiles[navigation.tabIndex!] = action.payload.data;
+      return state;
+    });
   },
 });
 
@@ -25,5 +33,19 @@ export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
   return response.data as IUser;
 });
 
-const userReducer = userSlice.reducer
-export { userReducer }
+export const updateTranslationFileById = createAsyncThunk(
+  "updateTranslationFileById",
+  async (payload: {
+    translationfile: ITranslationFile;
+    navigation: INavigation;
+  }) => {
+    const response = await axios.post<ITranslationFile>(
+      `${SERVER_URL}/translationFiles/update/${payload.translationfile._id}`,
+      { data: payload.translationfile.data }
+    );
+    return { navigation: payload.navigation, data: response.data };
+  }
+);
+
+const userReducer = userSlice.reducer;
+export { userReducer };

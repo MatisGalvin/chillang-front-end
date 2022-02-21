@@ -3,5 +3,7 @@
   "projects": "Projects",
   "selectProject": "Select your project",
   "selectProjectIfNone": "You don't have any project yet",
-  "createNewProjectButton": "CREATE A NEW PROJECT"
+  "createNewProjectButton": "CREATE A NEW PROJECT",
+  "loading": "Loading...",
+  "myCurrentProject": "My current project"
 }

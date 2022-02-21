@@ -3,5 +3,7 @@
   "projects": "Projets",
   "selectProject": "Selectionner votre projet",
   "selectProjectIfNone": "Vous n'avez pas encore de projet",
-  "createNewProjectButton": "NOUVEAU PROJET"
+  "createNewProjectButton": "NOUVEAU PROJET",
+  "loading": "Chargement...",
+  "myCurrentProject": "Mon projet actuel"
 }

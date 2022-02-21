@@ -18,6 +18,14 @@ import { useState } from "react";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
 import { IPage, ICountry } from "typings";
+import { InputEditable } from "./input-editable";
+import {
+  useAppDispatch,
+  setCurrentTabIndex,
+  updateTranslationFileById,
+  useAppSelector,
+  getNavigation,
+} from "models";
 
 /**
  * It is used to display the tab and its datas.
@@ -29,9 +37,13 @@ function TranslationTabList(p: {
 }) {
   const { t } = useTranslation("pagePage");
   const [currentLang, setCurrentLang] = useState<any>();
-  let currentFile = p.page?.translationFiles.find(
+  let currentTranslationFile = p.page?.translationFiles.find(
     (fichierTraduit) => fichierTraduit.lang === currentLang
   );
+
+  const navigation = useAppSelector(getNavigation);
+
+  const dispatch = useAppDispatch();
 
   const titleColumns = [
     t("pagePage:translation"),
@@ -47,9 +59,15 @@ function TranslationTabList(p: {
 
   const tabListHeader = (
     <TabList borderColor={customTheme.colors.blue_chillang}>
-      {p.supportedLanguages.map((lang) => {
+      {p.supportedLanguages.map((lang, index) => {
         return (
-          <Tab key={lang.code} onClick={() => setCurrentLang(lang.code)}>
+          <Tab
+            key={lang.code}
+            onClick={() => {
+              setCurrentLang(lang.code);
+              dispatch(setCurrentTabIndex(index));
+            }}
+          >
             <ReactCountryFlag
               countryCode={lang.code}
               svg
@@ -85,17 +103,45 @@ function TranslationTabList(p: {
     </Thead>
   );
 
+  /**
+   * Update the data locally and send it by the updateTranslationFileById action.
+   */
+  const handleSubmit =
+    (translationToUpdate: { id: string; value: string }) =>
+    (textValue: string) => {
+      for (let i = 0; i < currentTranslationFile!.data.length; i++) {
+        let currentElement = currentTranslationFile?.data[i];
+        if (currentElement?.id === translationToUpdate.id) {
+          currentTranslationFile!.data[i].value = textValue;
+          break;
+        }
+      }
+
+      dispatch(
+        updateTranslationFileById({
+          translationfile: currentTranslationFile!,
+          navigation,
+        })
+      );
+    };
+
   const tabListBodyContent = (
     <Tbody>
-      {currentFile?.data.map((currentTranslateFile) => {
+      {currentTranslationFile?.data.map((translation) => {
         return (
-          <Tr key={currentTranslateFile.id}>
-            <Td>{currentTranslateFile.value}</Td>
+          <Tr key={translation.id + currentTranslationFile?._id}>
+            <Td>
+              <InputEditable
+                currentTranslationFileID={currentTranslationFile?._id}
+                defaultValue={translation.value}
+                onSubmit={handleSubmit(translation)}
+              />
+            </Td>
             <Td>
               <Progress value={80} size="xs" />
             </Td>
-            <Td>{currentTranslateFile.id}</Td>
-            <Td>{currentTranslateFile.description}</Td>
+            <Td>{translation.id}</Td>
+            <Td>{translation.description}</Td>
           </Tr>
         );
       })}

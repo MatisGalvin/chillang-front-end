@@ -5,14 +5,18 @@ import { PageLinkList } from "containers";
 import { FaProjectDiagram } from "react-icons/fa";
 import { IProject } from "typings";
 import { BoxLink } from "components";
+import { getCurrentProject, useAppSelector } from "models";
 
 /**
- * Component that contains the header logo, a divider, the name of the actual project and the pages
+ * Component that contains the header logo, a divider, the name of the current project and the pages
  * associated to it.
+ * The current project is set in the project-list-page by clicking on the button associeted to it.
  */
 
 function Sidebar(p: { project: IProject | undefined }) {
   const { t } = useTranslation("sidebarContainer");
+
+  const currentProject = useAppSelector(getCurrentProject);
 
   const headerLogo = (
     <header>
@@ -29,7 +33,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       </Flex>
     </header>
   );
-
   const divider = (
     <Box
       mt="5"
@@ -37,7 +40,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       bgGradient="linear(to-r, #E0E1E200, #E0E1E2, #E0E1E228)"
     />
   );
-
   const renderProjectSection = (
     <BoxLink
       icon={<FaProjectDiagram color="white" />}
@@ -45,7 +47,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       title="Projects"
     />
   );
-
   const pageLabel = (
     <Text
       mb="5"
@@ -56,7 +57,6 @@ function Sidebar(p: { project: IProject | undefined }) {
       {t("sidebarContainer:pages")}
     </Text>
   );
-
   const renderPageSection = (project: IProject) => {
     return (
       <>
@@ -65,13 +65,12 @@ function Sidebar(p: { project: IProject | undefined }) {
       </>
     );
   };
-
   return (
     <>
       {headerLogo}
       {divider}
       {renderProjectSection}
-      {p.project && renderPageSection(p.project)}
+      {currentProject && renderPageSection(currentProject)}
     </>
   );
 }
