@@ -26,8 +26,6 @@ import {
   useAppSelector,
   getNavigation,
 } from "models";
-// import axios from "axios";
-// import { SERVER_URL } from "configs";
 
 /**
  * It is used to display the tab and its datas.
@@ -106,7 +104,7 @@ function TranslationTabList(p: {
   );
 
   /**
-   * PETIT COMMENTAIRE on vient mettre à jour la data du courant translation avec la value modifié
+   * Update the data locally and send it by the updateTranslationFileById action.
    */
   const handleSubmit =
     (translationToUpdate: { id: string; value: string }) =>
