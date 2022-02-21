@@ -8,13 +8,13 @@ import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userReducer } from "models";
-import { selectedProjectReducer } from "./selectedProject/selectedProject.slice";
+import { navigationReducer } from "./navigation/navigation.slice";
 /**
  * ROOT REDUCER
  */
 const rootReducer = combineReducers({
   user: userReducer,
-  selectedProject: selectedProjectReducer,
+  navigation: navigationReducer,
 });
 /**
  * MIDDLEWARES

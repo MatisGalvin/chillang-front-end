@@ -7,6 +7,7 @@ function BoxLink(p: {
   key?: any;
   title: string;
   link: string;
+  onClick?: () => void;
 }) {
   let resolved = useResolvedPath(p.link);
   let match = useMatch({ path: resolved.pathname, end: true });
@@ -33,6 +34,7 @@ function BoxLink(p: {
       }
       backgroundColor={match ? "white" : "none"}
       w="100%"
+      onClick={p.onClick}
     >
       <Link
         style={{

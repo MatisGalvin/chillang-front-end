@@ -6,11 +6,20 @@ import { BoxLink } from "components";
  * With those informations, it create a link in the sidebar.
  */
 
-function PageLinkItem(p: { pageID: string; pageName: string }) {
+function PageLinkItem(p: {
+  pageID: string;
+  pageName: string;
+  onClick?: () => void;
+}) {
   const link = "/page/" + p.pageID;
 
   return (
-    <BoxLink link={link} key={p.pageID} title={shortenString(p.pageName, 7)} />
+    <BoxLink
+      onClick={p.onClick}
+      link={link}
+      key={p.pageID}
+      title={shortenString(p.pageName, 7)}
+    />
   );
 }
 

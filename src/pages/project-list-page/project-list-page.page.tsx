@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BigButton } from "components";
 import {
-  selectProjectList,
+  getProjectList,
   useAppSelector,
   setCurrentProjectIndex,
   useAppDispatch,
@@ -31,7 +31,7 @@ function ProjectListPage() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("workspaceContainer");
 
-  const userProjectList = useAppSelector(selectProjectList);
+  const userProjectList = useAppSelector(getProjectList);
   const currentProject = useAppSelector(getCurrentProject);
 
   if (!userProjectList) {
