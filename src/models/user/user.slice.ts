@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { SERVER_URL } from "configs";
 import { INavigation } from "models";
 import { ITranslationFile, IUser } from "typings";
 
@@ -29,7 +28,9 @@ export const userSlice = createSlice({
 });
 
 export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
-  const response = await axios.get(`${SERVER_URL}/users/${userId}`);
+  const response = await axios.get(
+    `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`
+  );
   return response.data as IUser;
 });
 
@@ -40,7 +41,7 @@ export const updateTranslationFileById = createAsyncThunk(
     navigation: INavigation;
   }) => {
     const response = await axios.post<ITranslationFile>(
-      `${SERVER_URL}/translationFiles/update/${payload.translationfile._id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/translationFiles/update/${payload.translationfile._id}`,
       { data: payload.translationfile.data }
     );
     return { navigation: payload.navigation, data: response.data };

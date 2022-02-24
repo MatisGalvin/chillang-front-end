@@ -9,7 +9,6 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { SERVER_URL } from "configs";
 import { customTheme } from "styles";
 import { VscFile } from "react-icons/vsc";
 import useAsyncEffect from "use-async-effect";
@@ -28,7 +27,7 @@ function Page(p: { supportedLanguages: ICountry[] }) {
   const [page, setPage] = useState<IPage>();
   useAsyncEffect(async () => {
     const getOnePage = await axios.get<IPage>(
-      `${SERVER_URL}/pages/${params._id}`
+      `${process.env.REACT_APP_BACKEND_URL}/pages/${params._id}`
     );
 
     setPage(getOnePage.data);

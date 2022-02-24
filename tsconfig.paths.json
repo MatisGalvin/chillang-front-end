@@ -9,7 +9,6 @@
       "models": ["./src/models/index.ts"],
       "typings": ["./src/typings/index.ts"],
       "constant": ["./src/constant/index.ts"],
-      "configs": ["./src/configs/index.ts"],
       "helpers": ["./src/helpers/index.ts"]
     }
   }
