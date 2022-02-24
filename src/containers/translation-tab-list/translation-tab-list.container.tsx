@@ -107,23 +107,38 @@ function TranslationTabList(p: {
    * Update the data locally and send it by the updateTranslationFileById action.
    */
   const handleSubmit =
-    (translationToUpdate: { id: string; value: string }) =>
+    (
+      translationToUpdate: { id: string; value: string },
+      partToModify: string
+    ) =>
     (textValue: string) => {
       for (let i = 0; i < currentTranslationFile!.data.length; i++) {
         let currentElement = currentTranslationFile?.data[i];
         if (currentElement?.id === translationToUpdate.id) {
-          currentTranslationFile!.data[i].value = textValue;
-          break;
+          switch (partToModify) {
+            case "value":
+              currentTranslationFile!.data[i].value = textValue;
+              dispatch(
+                updateTranslationFileById({
+                  translationfile: currentTranslationFile!,
+                  navigation,
+                })
+              );
+              break;
+            case "description":
+              currentTranslationFile!.data[i].description = textValue;
+              dispatch(
+                updateTranslationFileById({
+                  translationfile: currentTranslationFile!,
+                  navigation,
+                })
+              );
+              break;
+          }
         }
       }
-
-      dispatch(
-        updateTranslationFileById({
-          translationfile: currentTranslationFile!,
-          navigation,
-        })
-      );
     };
+
   const tabListBodyContent = (
     <Tbody>
       {currentTranslationFile?.data.map((translation) => {
@@ -133,14 +148,20 @@ function TranslationTabList(p: {
               <InputEditable
                 currentTranslationFileID={currentTranslationFile?._id}
                 defaultValue={translation.value}
-                onSubmit={handleSubmit(translation)}
+                onSubmit={handleSubmit(translation, "value")}
               />
             </Td>
             <Td>
               <Progress value={80} size="xs" />
             </Td>
             <Td>{translation.id}</Td>
-            <Td>{translation.description}</Td>
+            <Td>
+              <InputEditable
+                currentTranslationFileID={currentTranslationFile?._id}
+                defaultValue={translation.description}
+                onSubmit={handleSubmit(translation, "description")}
+              />
+            </Td>
           </Tr>
         );
       })}

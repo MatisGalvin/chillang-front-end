@@ -15,6 +15,7 @@ import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
 import { TranslationTabList } from "containers";
 import { ICountry, IPage } from "typings";
+import { getCurrentProject, useAppSelector } from "models";
 
 /**
  * Component that returns a breadcrumb based on the current location,
@@ -32,6 +33,8 @@ function Page(p: { supportedLanguages: ICountry[] }) {
 
     setPage(getOnePage.data);
   }, [params._id]);
+
+  const currentProject = useAppSelector(getCurrentProject);
 
   const breadcrumb = (
     <Breadcrumb marginBottom="5" pt="5" ml="5">
@@ -106,7 +109,12 @@ function Page(p: { supportedLanguages: ICountry[] }) {
 
   return (
     <>
-      {breadcrumb}
+      <Flex alignItems="center" justifyContent="space-between">
+        {breadcrumb}
+        <Text>
+          {t("pagePage:myCurrentProject")} : {currentProject?.name}
+        </Text>
+      </Flex>
       {banner}
       <TranslationTabList
         supportedLanguages={p.supportedLanguages}

@@ -12,5 +12,6 @@
   "translation": "Traduction",
   "completion": "Completion",
   "identifier": "Identifiant",
-  "description": "Description"
+  "description": "Description",
+  "myCurrentProject": "Mon projet actuel"
 }
