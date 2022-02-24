@@ -21,7 +21,8 @@ export function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser("61e80f089810ec398b36e8f2"));
+    console.log("Environment : ", process.env.NODE_ENV);
+    dispatch(fetchUser(`${process.env.REACT_APP_USER_ID}`));
   }, [dispatch]);
 
   const currentUser = useAppSelector(selectCurrentUser);

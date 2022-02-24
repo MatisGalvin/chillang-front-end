@@ -124,7 +124,6 @@ function TranslationTabList(p: {
         })
       );
     };
-
   const tabListBodyContent = (
     <Tbody>
       {currentTranslationFile?.data.map((translation) => {
