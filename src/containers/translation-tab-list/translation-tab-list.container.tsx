@@ -138,6 +138,11 @@ function TranslationTabList(p: {
       }
     }
   };
+
+  /**
+   * When you edit a translation, if you edit an identifier, it will edit this identifier
+   * for every language available. If it's not, it will edit just this particulary translation.
+   */
   const handleSubmit =
     (translationId: string, keyNameToUpdate: "id" | "description" | "value") =>
     (newValue: string) => {
@@ -164,6 +169,11 @@ function TranslationTabList(p: {
       }
     };
 
+  /**
+   * When you want to add a new translation, it add for every language available the value
+   * of the "description" and "id" field, and only add the value of the "value" field
+   * for the current tab languague
+   */
   const handleSubmitNewTranslation =
     (value: string, id: string, description: string) => () => {
       currentPage?.translationFiles.forEach((translationFile, index) => {
@@ -224,7 +234,7 @@ function TranslationTabList(p: {
                 descriptionToCreate
               )}
             >
-              Submit
+              {t("pagePage:submit")}
             </Button>
           </Flex>
         </Td>

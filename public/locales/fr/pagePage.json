@@ -13,5 +13,6 @@
   "completion": "Completion",
   "identifier": "Identifiant",
   "description": "Description",
-  "myCurrentProject": "Mon projet actuel"
+  "myCurrentProject": "Mon projet actuel",
+  "submit": "Valider"
 }

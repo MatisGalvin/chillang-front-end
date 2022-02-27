@@ -1,5 +1,9 @@
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/react";
 
+/**
+ * Input that is used to directly edit a value, an ID or a description of a translation from the UI.
+ */
+
 function InputEditable(p: {
   placeholder?: string;
   defaultValue: string;
@@ -8,7 +12,7 @@ function InputEditable(p: {
 }) {
   return (
     <Editable
-      onSubmit={(newValue) => p.onSubmit(newValue)}
+      onSubmit={p.onSubmit}
       defaultValue={p.defaultValue}
       placeholder={p.placeholder}
     >

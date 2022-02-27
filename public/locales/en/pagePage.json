@@ -13,5 +13,6 @@
   "completion": "Completion",
   "identifier": "Identifier",
   "description": "Description",
-  "myCurrentProject": "My current project"
+  "myCurrentProject": "My current project",
+  "submit": "Submit"
 }
