@@ -11,13 +11,16 @@ import {
   Thead,
   Tr,
   Text,
+  Input,
+  Button,
+  Flex,
 } from "@chakra-ui/react";
 import ReactCountryFlag from "react-country-flag";
 import { customTheme } from "styles";
 import { useState } from "react";
 import useAsyncEffect from "use-async-effect";
 import { useTranslation } from "react-i18next";
-import { IPage, ICountry } from "typings";
+import { IPage, ICountry, ITranslationFile } from "typings";
 import { InputEditable } from "./input-editable";
 import {
   useAppDispatch,
@@ -25,6 +28,7 @@ import {
   updateTranslationFileById,
   useAppSelector,
   getNavigation,
+  INavigation,
 } from "models";
 
 /**
@@ -37,9 +41,14 @@ function TranslationTabList(p: {
 }) {
   const { t } = useTranslation("pagePage");
   const [currentLang, setCurrentLang] = useState<any>();
+  let currentPage = p.page;
   let currentTranslationFile = p.page?.translationFiles.find(
     (fichierTraduit) => fichierTraduit.lang === currentLang
   );
+
+  const [translationToCreate, setTranslationToCreate] = useState<string>("");
+  const [identifierToCreate, setIdentifierToCreate] = useState<string>("");
+  const [descriptionToCreate, setDescriptionToCreate] = useState<string>("");
 
   const navigation = useAppSelector(getNavigation);
 
@@ -106,60 +115,153 @@ function TranslationTabList(p: {
   /**
    * Update the data locally and send it by the updateTranslationFileById action.
    */
+
+  const updateTranslation = (
+    translationFileToUpdate: ITranslationFile,
+    keyNameToUpdate: "id" | "description" | "value",
+    id: string,
+    newValue: string,
+    navigation: INavigation
+  ) => {
+    for (let i = 0; i < translationFileToUpdate!.data.length; i++) {
+      let currentElement = translationFileToUpdate?.data[i];
+      if (currentElement?.id === id) {
+        const translationFileUpdateCopy = translationFileToUpdate;
+        Object.assign(translationFileToUpdate, translationFileUpdateCopy);
+        translationFileUpdateCopy!.data[i][keyNameToUpdate] = newValue;
+        dispatch(
+          updateTranslationFileById({
+            translationFile: translationFileUpdateCopy!,
+            navigation,
+          })
+        );
+      }
+    }
+  };
   const handleSubmit =
-    (
-      translationToUpdate: { id: string; value: string },
-      partToModify: string
-    ) =>
-    (textValue: string) => {
-      for (let i = 0; i < currentTranslationFile!.data.length; i++) {
-        let currentElement = currentTranslationFile?.data[i];
-        if (currentElement?.id === translationToUpdate.id) {
-          switch (partToModify) {
-            case "value":
-              currentTranslationFile!.data[i].value = textValue;
-              dispatch(
-                updateTranslationFileById({
-                  translationfile: currentTranslationFile!,
-                  navigation,
-                })
-              );
-              break;
-            case "description":
-              currentTranslationFile!.data[i].description = textValue;
-              dispatch(
-                updateTranslationFileById({
-                  translationfile: currentTranslationFile!,
-                  navigation,
-                })
-              );
-              break;
+    (translationId: string, keyNameToUpdate: "id" | "description" | "value") =>
+    (newValue: string) => {
+      if (keyNameToUpdate === "id") {
+        currentPage?.translationFiles.forEach(
+          (translationFile, translationFileIndex) => {
+            updateTranslation(
+              translationFile,
+              keyNameToUpdate,
+              translationId,
+              newValue,
+              { ...navigation, tabIndex: translationFileIndex }
+            );
           }
-        }
+        );
+      } else {
+        updateTranslation(
+          currentTranslationFile!,
+          keyNameToUpdate,
+          translationId,
+          newValue,
+          navigation
+        );
       }
     };
 
+  const handleSubmitNewTranslation =
+    (value: string, id: string, description: string) => () => {
+      currentPage?.translationFiles.forEach((translationFile, index) => {
+        translationFile.data = [
+          {
+            description,
+            id,
+            value: navigation.tabIndex === index ? value : "",
+          },
+          ...translationFile.data,
+        ];
+        dispatch(
+          updateTranslationFileById({
+            translationFile,
+            navigation: { ...navigation, tabIndex: index },
+          })
+        );
+      });
+      setDescriptionToCreate("");
+      setIdentifierToCreate("");
+      setTranslationToCreate("");
+    };
+
+  const creationTranslationForm = () => {
+    return (
+      <Tr>
+        <Td>
+          <Input
+            id="translationFieldToCreate"
+            value={translationToCreate}
+            placeholder="translation"
+            onChange={(e) => setTranslationToCreate(e.target.value)}
+          />
+        </Td>
+        <Td></Td>
+        <Td>
+          <Input
+            id="identifierFieldToCreate"
+            value={identifierToCreate}
+            placeholder="identifier"
+            onChange={(e) => setIdentifierToCreate(e.target.value)}
+          />
+        </Td>
+        <Td>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Input
+              id="descriptionFieldToCreate"
+              value={descriptionToCreate}
+              placeholder="description"
+              onChange={(e) => setDescriptionToCreate(e.target.value)}
+            />
+            <Button
+              ml="2"
+              type="submit"
+              onClick={handleSubmitNewTranslation(
+                translationToCreate,
+                identifierToCreate,
+                descriptionToCreate
+              )}
+            >
+              Submit
+            </Button>
+          </Flex>
+        </Td>
+      </Tr>
+    );
+  };
+
   const tabListBodyContent = (
     <Tbody>
+      {creationTranslationForm()}
       {currentTranslationFile?.data.map((translation) => {
         return (
           <Tr key={translation.id + currentTranslationFile?._id}>
             <Td>
               <InputEditable
+                placeholder="..."
                 currentTranslationFileID={currentTranslationFile?._id}
                 defaultValue={translation.value}
-                onSubmit={handleSubmit(translation, "value")}
+                onSubmit={handleSubmit(translation.id, "value")}
               />
             </Td>
             <Td>
               <Progress value={80} size="xs" />
             </Td>
-            <Td>{translation.id}</Td>
             <Td>
               <InputEditable
                 currentTranslationFileID={currentTranslationFile?._id}
+                defaultValue={translation.id}
+                onSubmit={handleSubmit(translation.id, "id")}
+              />
+            </Td>
+            <Td>
+              <InputEditable
+                placeholder="Add description here"
+                currentTranslationFileID={currentTranslationFile?._id}
                 defaultValue={translation.description}
-                onSubmit={handleSubmit(translation, "description")}
+                onSubmit={handleSubmit(translation.id, "description")}
               />
             </Td>
           </Tr>

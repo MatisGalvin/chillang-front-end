@@ -37,12 +37,12 @@ export const fetchUser = createAsyncThunk("getUser", async (userId: string) => {
 export const updateTranslationFileById = createAsyncThunk(
   "updateTranslationFileById",
   async (payload: {
-    translationfile: ITranslationFile;
+    translationFile: ITranslationFile;
     navigation: INavigation;
   }) => {
     const response = await axios.post<ITranslationFile>(
-      `${process.env.REACT_APP_BACKEND_URL}/translationFiles/update/${payload.translationfile._id}`,
-      { data: payload.translationfile.data }
+      `${process.env.REACT_APP_BACKEND_URL}/translationFiles/update/${payload.translationFile._id}`,
+      { data: payload.translationFile.data }
     );
     return { navigation: payload.navigation, data: response.data };
   }
